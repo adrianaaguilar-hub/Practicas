@@ -1,0 +1,138 @@
+═══════════════════════════════════════════════════════════════
+    EJERCICIOS PROGRESIVOS - SISTEMA DE DIETA CON MATRICES
+═══════════════════════════════════════════════════════════════
+
+📌 CONCEPTOS BÁSICOS PERMITIDOS:
+✅ String[][] matriz = new String[5][5]  - crear matriz
+✅ matriz[i][j]                          - acceder/modificar
+✅ matriz[i][j] = "texto"                - asignar valor
+✅ for loops
+✅ if/else
+✅ Scanner para leer datos
+✅ System.out.println() para imprimir
+✅ Comparar: matriz[i][j] == null
+
+═══════════════════════════════════════════════════════════════
+EJERCICIO 1: Crear y mostrar una matriz simple
+═══════════════════════════════════════════════════════════════
+
+OBJETIVO: 
+Crear una matriz de 5x5 (5 días x 5 ingestas) y rellenarla 
+con "Vacio", luego mostrarla con un for.
+
+SALIDA ESPERADA:
+Día 1: Vacio, Vacio, Vacio, Vacio, Vacio
+Día 2: Vacio, Vacio, Vacio, Vacio, Vacio
+Día 3: Vacio, Vacio, Vacio, Vacio, Vacio
+Día 4: Vacio, Vacio, Vacio, Vacio, Vacio
+Día 5: Vacio, Vacio, Vacio, Vacio, Vacio
+
+PISTAS:
+- Usa String[][] encuesta = new String[5][5];
+- Usa dos for anidados para recorrer
+- El for externo recorre días (0-4)
+- El for interno recorre ingestas (0-4)
+
+═══════════════════════════════════════════════════════════════
+EJERCICIO 2: Guardar UN alimento en una posición
+═══════════════════════════════════════════════════════════════
+
+OBJETIVO:
+Pedir al usuario que ingrese un día (1-5) y una ingesta (1-5),
+luego pedir UN alimento y guardarlo en esa posición de la matriz.
+Finalmente mostrar toda la matriz.
+
+SALIDA ESPERADA:
+Ingrese día (1-5): 2
+Ingrese ingesta (1-5): 1
+Ingrese alimento: Café
+
+Matriz actualizada:
+Día 1: Vacio, Vacio, Vacio, Vacio, Vacio
+Día 2: Café, Vacio, Vacio, Vacio, Vacio
+Día 3: Vacio, Vacio, Vacio, Vacio, Vacio
+...
+
+PISTAS:
+- Usa Scanner para leer datos
+- Recuerda: usuario ingresa 1-5, pero matriz usa índices 0-4
+- Convierte: indiceDia = diaUsuario - 1
+- Guarda: encuesta[indiceDia][indiceIngesta] = alimento;
+
+═══════════════════════════════════════════════════════════════
+EJERCICIO 3: Mostrar un día completo con nombres de ingestas
+═══════════════════════════════════════════════════════════════
+
+OBJETIVO:
+Crear un array con los nombres de las ingestas:
+["Desayuno", "Media mañana", "Almuerzo", "Merienda", "Cena"]
+
+Pedir al usuario un día (1-5) y mostrar todas las ingestas
+de ese día con sus nombres.
+
+SALIDA ESPERADA:
+Ingrese día (1-5): 2
+
+Día 2:
+  Desayuno: Café
+  Media mañana: Vacio
+  Almuerzo: Vacio
+  Merienda: Vacio
+  Cena: Vacio
+
+PISTAS:
+- String[] nombresIngestas = {"Desayuno", "Media mañana", ...};
+- Usa un for para recorrer las 5 ingestas
+- Imprime: nombresIngestas[i] + ": " + encuesta[dia][i]
+
+═══════════════════════════════════════════════════════════════
+EJERCICIO 4: Menú simple con bucle
+═══════════════════════════════════════════════════════════════
+
+OBJETIVO:
+Crear un menú que permita al usuario:
+1. Seleccionar un día
+2. Seleccionar una ingesta
+3. Ingresar UN alimento
+4. Ver la matriz completa
+5. Salir (con opción 0)
+
+El menú debe repetirse hasta que el usuario elija salir.
+
+SALIDA ESPERADA:
+=== MENÚ ===
+1. Agregar alimento
+2. Ver encuesta completa
+0. Salir
+Opción: 1
+
+Día (1-5): 3
+Ingesta (1-5): 2
+Alimento: Yogurt
+¡Agregado!
+
+=== MENÚ ===
+...
+
+PISTAS:
+- Usa while(true) para repetir el menú
+- Usa if para cada opción
+- Usa break para salir del bucle cuando elijan 0
+
+═══════════════════════════════════════════════════════════════
+EJERCICIO 5: Sistema completo con el formato del reto
+═══════════════════════════════════════════════════════════════
+
+OBJETIVO:
+Implementar el sistema tal como lo pide el reto:
+- Primero seleccionar día
+- Luego seleccionar ingesta (con opción -1 para volver)
+- Agregar alimentos (con -1 para terminar)
+- Al final mostrar resumen
+
+NOTA: Este ejercicio es más complejo. Hazlo solo cuando 
+domines los anteriores.
+
+═══════════════════════════════════════════════════════════════
+FIN DE LOS EJERCICIOS
+═══════════════════════════════════════════════════════════════

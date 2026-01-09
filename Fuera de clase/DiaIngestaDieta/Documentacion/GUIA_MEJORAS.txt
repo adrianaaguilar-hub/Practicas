@@ -1,0 +1,181 @@
+═══════════════════════════════════════════════════════════════════
+    GUÍA DE MEJORAS PARA DiaDietaIngestaVersionI.java
+═══════════════════════════════════════════════════════════════════
+
+📍 UBICACIÓN DE LOS CAMBIOS
+═══════════════════════════════════════════════════════════════════
+
+CAMBIO 1: Importar Arrays (LÍNEA 1)
+────────────────────────────────────────────────────────────────────
+ANTES:
+    import java.util.Scanner;
+
+DESPUÉS:
+    import java.util.Scanner;
+    import java.util.Arrays;  // ← NUEVO
+
+¿POR QUÉ? Para usar Arrays.toString(), Arrays.fill(), etc.
+
+
+CAMBIO 2: Usar Arrays.fill() para inicializar (LÍNEAS 13-17)
+────────────────────────────────────────────────────────────────────
+ANTES:
+    String[] Dia1 = { "Vacio", "Vacio", "Vacio", "Vacio", "Vacio" };
+    String[] Dia2 = { "Vacio", "Vacio", "Vacio", "Vacio", "Vacio" };
+    ...
+
+DESPUÉS:
+    String[] Dia1 = new String[5];
+    Arrays.fill(Dia1, "Vacio");
+    String[] Dia2 = new String[5];
+    Arrays.fill(Dia2, "Vacio");
+    ...
+
+¿POR QUÉ? Más limpio y menos repetitivo. Si cambias a 10 ingestas,
+         solo cambias el número, no escribes 10 veces "Vacio".
+
+
+CAMBIO 3: EL TERCER WHILE (LÍNEA 108 - DESPUÉS DE SELECCIONAR INGESTA)
+────────────────────────────────────────────────────────────────────
+UBICACIÓN EXACTA: Reemplazar la línea 108
+
+ANTES (LÍNEA 108):
+    System.out.print("Ingrese la ingesta de su " + Comida[indiceIngesta] + ": ");
+    ingestaUsuario = scanner.nextLine();
+
+DESPUÉS:
+    // AQUÍ VA EL TERCER WHILE ↓↓↓
+    
+    while (true) {  // ← NUEVO WHILE
+        System.out.print("Ingrese un alimento del " + Comida[indiceIngesta] + " del día " + diaUsuario);
+        System.out.println(" (-1 para terminar / -2 para listar alimentos ingresados)");
+        ingestaUsuario = scanner.nextLine();
+        
+        // Opción -1: Terminar
+        if (ingestaUsuario.equals("-1")) {
+            break;
+        }
+        
+        // Opción -2: Listar alimentos actuales
+        if (ingestaUsuario.equals("-2")) {
+            String alimentosActuales = "";
+            if (diaUsuario == 1) alimentosActuales = Dia1[indiceIngesta];
+            else if (diaUsuario == 2) alimentosActuales = Dia2[indiceIngesta];
+            else if (diaUsuario == 3) alimentosActuales = Dia3[indiceIngesta];
+            else if (diaUsuario == 4) alimentosActuales = Dia4[indiceIngesta];
+            else if (diaUsuario == 5) alimentosActuales = Dia5[indiceIngesta];
+            
+            System.out.println("Alimentos ingresados: " + alimentosActuales);
+            continue;
+        }
+        
+        // Agregar alimento (concatenar con coma)
+        if (diaUsuario == 1) {
+            if (Dia1[indiceIngesta].equals("Vacio")) {
+                Dia1[indiceIngesta] = ingestaUsuario;
+            } else {
+                Dia1[indiceIngesta] = Dia1[indiceIngesta] + ", " + ingestaUsuario;
+            }
+        } // ... (repetir para Dia2, Dia3, Dia4, Dia5)
+        
+        System.out.println("✓ Alimento agregado.");
+    }
+    
+    // ↑↑↑ FIN DEL TERCER WHILE
+
+¿POR QUÉ? Esto permite ingresar MÚLTIPLES alimentos uno por uno,
+         como pidió tu profesor.
+
+
+CAMBIO 4: Simplificar visualización con Arrays.toString() (OPCIONAL)
+────────────────────────────────────────────────────────────────────
+ANTES (LÍNEAS 42-46):
+    for (int i = 0; i < 5; i++) {
+        System.out.print(Comida[i] + ": " + Dia1[i]);
+        System.out.println();
+    }
+
+DESPUÉS:
+    for (int i = 0; i < 5; i++) {
+        System.out.println(Comida[i] + ": " + Dia1[i]);
+    }
+    // O más simple (pero menos bonito):
+    System.out.println(Arrays.toString(Dia1));
+
+¿POR QUÉ? Arrays.toString() es más corto, pero tu forma es más clara
+         porque muestra los nombres de las comidas.
+
+
+═══════════════════════════════════════════════════════════════════
+📊 DIAGRAMA DE ESTRUCTURA CON EL TERCER WHILE
+═══════════════════════════════════════════════════════════════════
+
+WHILE 1: Días (línea 23)
+│
+├─ Mostrar día actual (línea 35)
+│
+└─ WHILE 2: Ingestas (línea 91)
+   │
+   ├─ Seleccionar ingesta (1-5 o -1)
+   │
+   └─ WHILE 3: Alimentos (línea 108) ← ¡AQUÍ VA EL NUEVO!
+      │
+      ├─ Pedir alimento
+      │
+      ├─ Si es "-1" → break (terminar, volver a WHILE 2)
+      │
+      ├─ Si es "-2" → mostrar lista y continue
+      │
+      └─ Si es alimento → agregar y continue (pedir otro)
+
+
+═══════════════════════════════════════════════════════════════════
+🔧 HERRAMIENTAS DEL PROFESOR QUE USARÁS
+═══════════════════════════════════════════════════════════════════
+
+✅ .equals()
+   - Comparar strings: ingestaUsuario.equals("-1")
+   - Comparar con "Vacio": Dia1[i].equals("Vacio")
+
+✅ Arrays.fill()
+   - Inicializar arrays: Arrays.fill(Dia1, "Vacio")
+
+✅ Arrays.toString() (OPCIONAL)
+   - Mostrar arrays rápido: Arrays.toString(Dia1)
+   - Útil para debugging
+
+
+═══════════════════════════════════════════════════════════════════
+📝 RESUMEN DE CAMBIOS
+═══════════════════════════════════════════════════════════════════
+
+CAMBIO                      LÍNEA    IMPORTANCIA    DIFICULTAD
+────────────────────────────────────────────────────────────────────
+Import Arrays               1        Media          Fácil
+Arrays.fill()               13-17    Baja           Fácil
+TERCER WHILE con .equals()  108      ALTA ⭐⭐⭐     Media
+Arrays.toString()           42+      Baja           Fácil
+
+
+═══════════════════════════════════════════════════════════════════
+🎯 ORDEN RECOMENDADO
+═══════════════════════════════════════════════════════════════════
+
+1. PRIMERO: Agregar import Arrays (línea 1)
+2. SEGUNDO: Implementar el TERCER WHILE (línea 108) ← LO MÁS IMPORTANTE
+3. TERCERO: (Opcional) Cambiar a Arrays.fill() (líneas 13-17)
+4. CUARTO: (Opcional) Probar Arrays.toString() para ver diferencia
+
+
+═══════════════════════════════════════════════════════════════════
+💡 TIPS
+═══════════════════════════════════════════════════════════════════
+
+- El WHILE 3 va DENTRO del WHILE 2
+- Usa .equals() para comparar strings, NO ==
+- Cuando concatenas: verifica si es "Vacio" primero
+- Si es el primer alimento: reemplaza "Vacio"
+- Si ya hay alimentos: agrega con ", " al inicio
+
+
+═══════════════════════════════════════════════════════════════════

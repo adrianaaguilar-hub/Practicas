@@ -1,0 +1,325 @@
+═══════════════════════════════════════════════════════════════════
+    EJERCICIOS PASO A PASO - PRÁCTICA PARA EL EXAMEN
+═══════════════════════════════════════════════════════════════════
+
+Estos ejercicios te ayudarán a construir el juego de Rescate
+poco a poco, como lo hiciste con Aspiradora.
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 1: CREAR Y MOSTRAR LA MATRIZ
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Crear una matriz 8x8 llena de -1 y mostrarla
+
+PASOS:
+1. En el main, crea una matriz 8x8 de enteros
+2. Llena toda la matriz con el valor -1
+   (puedes inicializarla directamente o usar bucles)
+3. Imprime la matriz usando System.out.println()
+
+SALIDA ESPERADA:
+-1 -1 -1 -1 -1 -1 -1 -1
+-1 -1 -1 -1 -1 -1 -1 -1
+-1 -1 -1 -1 -1 -1 -1 -1
+...
+
+TIP: Usa dos formas y compara:
+   Forma 1: Inicialización directa (como en Aspiradora)
+   Forma 2: Con bucles for anidados
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 2: MÉTODO MAPEAR
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Convertir números a símbolos visuales
+
+CREAR MÉTODO:
+static String mapear(int valor)
+
+REGLAS:
+- Si valor < 0  → devolver " ? "  (niebla)
+- Si valor == 0 → devolver "~~~"  (agua)
+- Si valor == 2 → devolver "\\O/" (soldado)
+
+PRUEBAS EN MAIN:
+System.out.println(mapear(-1));  // Debe imprimir " ? "
+System.out.println(mapear(0));   // Debe imprimir "~~~"
+System.out.println(mapear(2));   // Debe imprimir "\O/"
+
+TIP: Usa un array de Strings como en Aspiradora:
+String[] simbolos = {" ? ", "~~~", "\\O/"};
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 3: IMPRIMIR TABLERO CON COORDENADAS
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Mostrar el tablero con números de filas y columnas
+
+CREAR MÉTODO:
+static void imprimirTablero(int[][] matriz)
+
+ESTRUCTURA:
+1. Imprimir coordenadas X arriba:
+   "     0  1  2  3  4  5  6  7"
+   
+2. Imprimir línea separadora:
+   "--+-------------------------"
+   
+3. Para cada fila:
+   a. Imprimir número de fila + " | "
+   b. Para cada columna, imprimir mapear(valor)
+   c. Salto de línea
+
+SALIDA ESPERADA:
+     0  1  2  3  4  5  6  7
+  --+-------------------------
+  0 |  ?  ?  ?  ?  ?  ?  ?  ?
+  1 |  ?  ?  ?  ?  ?  ?  ?  ?
+  ...
+
+TIP: Mira cómo hiciste imprimirEscenario() en Aspiradora
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 4: COLOCAR SOLDADOS
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Colocar soldados en posiciones aleatorias
+
+CREAR MÉTODO:
+static void colocarSoldados(int cantidad, int[][] matriz)
+
+ALGORITMO:
+1. Crear variable: int soldadosColocados = 0
+2. Bucle do-while que se repite mientras soldadosColocados < cantidad:
+   a. Generar fila aleatoria: (int)(Math.random() * 8)
+   b. Generar columna aleatoria: (int)(Math.random() * 8)
+   c. SI esa casilla NO es -2 (no hay soldado):
+      - Colocar soldado: matriz[fila][columna] = -2
+      - Incrementar soldadosColocados
+3. Fin del bucle cuando soldadosColocados == cantidad
+
+PRUEBA EN MAIN:
+int[][] tablero = crear matriz 8x8 de -1
+colocarSoldados(3, tablero);
+imprimirTablero(tablero);
+
+SALIDA ESPERADA: Verás 3 soldados en posiciones aleatorias
+(recuerda que con niebla todos se ven como "?")
+
+TIP: Parecido a cómo colocaste obstáculos en ensuciarEscenario()
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 5: PEDIR COORDENADAS AL USUARIO
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Leer coordenadas X, Y del usuario
+
+CREAR MÉTODO:
+static int[] pedirCoordenadas()
+
+PASOS:
+1. Crear Scanner
+2. Pedir coordenada X al usuario
+3. Pedir coordenada Y al usuario
+4. Devolver un array: new int[] {y, x}
+
+IMPORTANTE: Devolver {y, x} en ese orden porque:
+matriz[fila][columna] = matriz[y][x]
+
+PRUEBA EN MAIN:
+int[] coords = pedirCoordenadas();
+System.out.println("Elegiste: fila " + coords[0] + ", columna " + coords[1]);
+
+TIP: Este método es NUEVO, no lo tenías en Aspiradora
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 6: DESPEJAR POSICIÓN
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Quitar la niebla de una posición (convertir negativo a positivo)
+
+CREAR MÉTODO:
+static void despejarPosicion(int[][] matriz, int[] coordenadas)
+
+PASOS:
+1. Extraer y = coordenadas[0]
+2. Extraer x = coordenadas[1]
+3. Si el valor es negativo:
+   matriz[y][x] = matriz[y][x] * -1
+
+PRUEBA EN MAIN:
+int[][] tablero = crear matriz con -1 y algunos -2
+imprimirTablero(tablero);  // Todo con niebla
+
+int[] coords = {2, 3};
+despejarPosicion(tablero, coords);
+imprimirTablero(tablero);  // La posición [2][3] despejada
+
+RESULTADO ESPERADO:
+- Si había -1 → se convierte en 0 (agua ~~~)
+- Si había -2 → se convierte en 2 (soldado \O/)
+
+TIP: También puedes usar operador ternario:
+matriz[y][x] = matriz[y][x] < 0 ? matriz[y][x] * -1 : matriz[y][x];
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 7: CONTAR SOLDADOS ENCONTRADOS
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Verificar si encontraste todos los soldados
+
+CREAR MÉTODO:
+static boolean todosEncontrados(int[][] matriz, int cantidadTotal)
+
+ALGORITMO:
+1. Crear contador: int encontrados = 0
+2. Recorrer toda la matriz con dos bucles for
+3. Si matriz[i][j] == 2, incrementar encontrados
+4. Devolver: encontrados == cantidadTotal
+
+PRUEBA EN MAIN:
+int[][] tablero = crear matriz
+colocarSoldados(3, tablero);
+
+// Despejar algunas posiciones con soldados
+despejarPosicion(tablero, {posición con soldado});
+despejarPosicion(tablero, {posición con soldado});
+
+boolean gano = todosEncontrados(tablero, 3);
+System.out.println("Ganó: " + gano);  // Debe ser false
+
+// Despejar el tercer soldado
+despejarPosicion(tablero, {posición con soldado});
+gano = todosEncontrados(tablero, 3);
+System.out.println("Ganó: " + gano);  // Debe ser true
+
+TIP: Es como estaSucio() de Aspiradora pero al revés
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 8: UNIR TODO EN EL MAIN (LA PARTE DIFÍCIL)
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Coordinar todos los métodos en el bucle principal
+
+ESTRUCTURA DEL MAIN:
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    
+    // 1. INICIALIZACIÓN
+    int[][] tablero = // matriz 8x8 de -1
+    final int TOTAL_SOLDADOS = 3;
+    final int TOTAL_TURNOS = 5;
+    
+    colocarSoldados(TOTAL_SOLDADOS, tablero);
+    
+    int turnoActual = 0;
+    boolean seguirJugando = true;
+    
+    
+    // 2. BUCLE PRINCIPAL
+    do {
+        // a. Mostrar tablero
+        
+        // b. Pedir coordenadas
+        
+        // c. Despejar posición
+        
+        // d. Verificar si ganó
+        
+        // e. Incrementar turno
+        
+        // f. Actualizar condición de seguir jugando
+        
+    } while (seguirJugando);
+    
+    
+    // 3. MENSAJE FINAL
+    
+    
+    scanner.close();
+}
+
+CONDICIÓN DE SEGUIR JUGANDO:
+seguirJugando = turnoActual < TOTAL_TURNOS && !ganó
+
+Esto significa:
+- Sigue jugando SI aún hay turnos Y NO ganaste
+- Para de jugar SI se acabaron los turnos O si ganaste
+
+TIP: Esta es la parte que te costó en Aspiradora
+      Tómate tu tiempo y prueba paso a paso
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 9 (EXTRA): VALIDAR COORDENADAS
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Evitar que el usuario ingrese coordenadas inválidas
+
+CREAR MÉTODO:
+static boolean coordenadaValida(int x, int y, int[][] matriz)
+
+VALIDACIONES:
+- x >= 0 y x < matriz[0].length
+- y >= 0 y y < matriz.length
+
+MODIFICAR pedirCoordenadas():
+Usar un bucle do-while que se repita hasta que la coordenada sea válida
+
+TIP: Parecido a posicionValida() de Aspiradora
+
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 10 (EXTRA): MOSTRAR MENSAJE PERSONALIZADO
+═══════════════════════════════════════════════════════════════════
+
+OBJETIVO: Hacer el juego más interactivo
+
+MEJORAS:
+1. Cuando despejes agua, imprimir: "¡Solo agua! Sigue buscando..."
+2. Cuando despejes un soldado, imprimir: "¡¡SOLDADO ENCONTRADO!!"
+3. Al final, mostrar cuántos soldados encontraste de cuántos había
+
+EJEMPLO:
+"Encontraste 2 de 3 soldados. ¡Casi lo logras!"
+"¡PERFECTO! Encontraste los 3 soldados en 4 turnos"
+
+TIP: Esto hace tu código más profesional
+
+
+═══════════════════════════════════════════════════════════════════
+📊 ORDEN RECOMENDADO DE PRÁCTICA
+═══════════════════════════════════════════════════════════════════
+
+DÍA 1:
+  ✓ Ejercicio 1: Crear matriz
+  ✓ Ejercicio 2: Método mapear
+  ✓ Ejercicio 3: Imprimir tablero
+
+DÍA 2:
+  ✓ Ejercicio 4: Colocar soldados
+  ✓ Ejercicio 5: Pedir coordenadas
+
+DÍA 3:
+  ✓ Ejercicio 6: Despejar posición
+  ✓ Ejercicio 7: Contar soldados
+
+DÍA 4:
+  ✓ Ejercicio 8: Unir todo en main
+  ✓ Probar el juego completo
+
+DÍA 5:
+  ✓ Ejercicio 9: Validaciones
+  ✓ Ejercicio 10: Mejoras
+  ✓ Repasar y practicar
+
+
+¡ADELANTE! Ya sabes hacer esto. Lo demostraste con Aspiradora 💪

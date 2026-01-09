@@ -1,0 +1,194 @@
+═══════════════════════════════════════════════════════════════════
+    GUÍA DE EJERCICIOS - SISTEMA DE ENCUESTAS DIETÉTICAS
+═══════════════════════════════════════════════════════════════════
+
+📚 CONCEPTOS BÁSICOS QUE NECESITAS SABER:
+
+1. Arrays (Arreglos):
+   - Declarar: String[] nombre = new String[5];
+   - Acceder: nombre[0], nombre[1], nombre[2]...
+   - Modificar: nombre[0] = "nuevo valor";
+   - Los índices empiezan en 0 (no en 1)
+
+2. Bucle for:
+   for (int i = 0; i < 5; i++) {
+       // código que se repite
+   }
+
+3. Scanner (leer del teclado):
+   Scanner scanner = new Scanner(System.in);
+   int numero = scanner.nextInt();
+   String texto = scanner.nextLine();
+
+4. Bucle while (repetir hasta condición):
+   while (condicion) {
+       // código
+       if (salir) break;
+   }
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 1: Crear y mostrar una matriz simple
+═══════════════════════════════════════════════════════════════════
+
+ARCHIVO: Ejercicio1_CrearMostrarMatriz.java
+
+OBJETIVO:
+- Crear 5 arrays (uno por día) con 5 posiciones cada uno
+- Rellenar todas las posiciones con "Vacio"
+- Mostrar todos los días con sus ingestas usando bucles for
+
+LO QUE APRENDES:
+✓ Crear múltiples arrays
+✓ Recorrer arrays con for
+✓ Mostrar datos en pantalla
+
+COMPLEJIDAD: ⭐ (Muy fácil)
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 2: Guardar UN alimento en una posición
+═══════════════════════════════════════════════════════════════════
+
+ARCHIVO: Ejercicio2_GuardarUnAlimento.java
+
+OBJETIVO:
+- Pedir al usuario: día, ingesta y alimento
+- Guardar el alimento en la posición correcta
+- Mostrar el día completo para verificar
+
+LO QUE APRENDES:
+✓ Usar Scanner para leer del teclado
+✓ Convertir números de usuario (1-5) a índices (0-4)
+✓ Modificar una posición del array con =
+✓ Usar if/else if para seleccionar el día correcto
+
+COMPLEJIDAD: ⭐⭐ (Fácil)
+
+CONCEPTO CLAVE:
+- Usuario escribe 1-5, pero arrays usan 0-4
+- Solución: int indice = numero - 1;
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 3: Mostrar un día completo
+═══════════════════════════════════════════════════════════════════
+
+ARCHIVO: Ejercicio3_MostrarDiaCompleto.java
+
+OBJETIVO:
+- Crear días con datos de ejemplo (algunos vacíos, otros con alimentos)
+- Pedir al usuario qué día quiere ver
+- Mostrar todas las ingestas de ese día
+
+LO QUE APRENDES:
+✓ Trabajar con datos predefinidos
+✓ Seleccionar un array específico según input del usuario
+✓ Recorrer y mostrar un array completo
+
+COMPLEJIDAD: ⭐⭐ (Fácil)
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 4: Menú simple que se repite
+═══════════════════════════════════════════════════════════════════
+
+ARCHIVO: Ejercicio4_MenuSimple.java
+
+OBJETIVO:
+- Crear un menú que se repite con while
+- Permitir al usuario elegir día e ingesta múltiples veces
+- Guardar alimentos y salir cuando quiera (opción 0)
+- Mostrar resumen final al salir
+
+LO QUE APRENDES:
+✓ Usar while para repetir acciones
+✓ Usar break para salir de un bucle
+✓ Usar continue para volver al inicio del bucle
+✓ Menús anidados (un menú dentro de otro)
+✓ Validar entradas del usuario
+
+COMPLEJIDAD: ⭐⭐⭐ (Media)
+
+CONCEPTO CLAVE:
+- Bucle externo: seleccionar día
+- Bucle interno: seleccionar ingesta
+- break sale del bucle
+- continue vuelve al inicio del bucle
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO 5: Guardar múltiples alimentos
+═══════════════════════════════════════════════════════════════════
+
+ARCHIVO: Ejercicio5_VariosAlimentos.java
+
+OBJETIVO:
+- Permitir agregar VARIOS alimentos a la misma ingesta
+- Guardarlos separados por comas: "Café, Tostadas, Huevos"
+- Opción -1 para terminar de agregar alimentos
+- Opción -2 para listar alimentos ya ingresados
+- Mostrar resumen completo al final
+
+LO QUE APRENDES:
+✓ Concatenar strings con +
+✓ Agregar datos a un string existente
+✓ Verificar si un string está vacío
+✓ Usar .equals() para comparar strings
+✓ Bucles anidados (3 niveles)
+
+COMPLEJIDAD: ⭐⭐⭐⭐ (Media-Alta)
+
+CONCEPTO CLAVE:
+- Si está vacío: array[i] = "primer alimento"
+- Si ya tiene datos: array[i] = array[i] + ", nuevo alimento"
+- Usar .equals("") para verificar si está vacío
+- Usar .equals("-1") para comparar strings con números
+
+═══════════════════════════════════════════════════════════════════
+ORDEN RECOMENDADO PARA APRENDER
+═══════════════════════════════════════════════════════════════════
+
+1. Ejercicio 1 → Entender arrays y bucles for
+2. Ejercicio 2 → Modificar arrays con Scanner
+3. Ejercicio 3 → Seleccionar y mostrar datos
+4. Ejercicio 4 → Menús con while y break
+5. Ejercicio 5 → Concatenar strings y agregar datos
+
+═══════════════════════════════════════════════════════════════════
+CÓMO EJECUTAR LOS EJERCICIOS
+═══════════════════════════════════════════════════════════════════
+
+1. Abrir terminal en VS Code
+2. Ir a la carpeta: cd "c:\Users\adria\OneDrive\Documentos\Repos\Practicas"
+3. Compilar: javac Ejercicio1_CrearMostrarMatriz.java
+4. Ejecutar: java Ejercicio1_CrearMostrarMatriz
+
+Repite para cada ejercicio (Ejercicio2, Ejercicio3, etc.)
+
+═══════════════════════════════════════════════════════════════════
+PREGUNTAS PARA PRACTICAR
+═══════════════════════════════════════════════════════════════════
+
+Ejercicio 1:
+- ¿Por qué usamos un for de 0 a 5?
+- ¿Qué pasa si cambias el 5 por un 3?
+- ¿Puedes mostrar solo el Día 3?
+
+Ejercicio 2:
+- ¿Por qué restamos 1 al número del usuario?
+- ¿Qué pasa si no usas scanner.nextLine() después de nextInt()?
+- ¿Puedes agregar validación para números fuera de rango?
+
+Ejercicio 3:
+- ¿Puedes modificar para mostrar TODOS los días?
+- ¿Puedes agregar un contador de alimentos no vacíos?
+
+Ejercicio 4:
+- ¿Qué hace break vs continue?
+- ¿Puedes agregar una opción para ver todos los días?
+- ¿Puedes modificar para que -1 salga completamente?
+
+Ejercicio 5:
+- ¿Por qué usamos .equals("") en lugar de == ""?
+- ¿Puedes contar cuántos alimentos hay en cada ingesta?
+- ¿Puedes agregar una opción para borrar todos los alimentos de una ingesta?
+
+═══════════════════════════════════════════════════════════════════
+FIN DE LA GUÍA
+═══════════════════════════════════════════════════════════════════

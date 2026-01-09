@@ -1,0 +1,209 @@
+═══════════════════════════════════════════════════════════════════
+    CÓMO FUNCIONA EL MENÚ CON WHILE - EXPLICACIÓN PASO A PASO
+═══════════════════════════════════════════════════════════════════
+
+📚 CONCEPTOS CLAVE:
+
+1. WHILE - Bucle que se repite mientras una condición sea verdadera
+   
+   while (condicion) {
+       // Este código se repite
+   }
+
+2. BREAK - Sale del while más cercano
+
+3. CONTINUE - Vuelve al inicio del while más cercano
+
+4. WHILE ANIDADOS - Un while dentro de otro while
+
+═══════════════════════════════════════════════════════════════════
+ESTRUCTURA DE 3 NIVELES (3 WHILES ANIDADOS)
+═══════════════════════════════════════════════════════════════════
+
+NIVEL 1: Seleccionar DÍA
+├─ NIVEL 2: Seleccionar INGESTA
+   └─ NIVEL 3: Agregar ALIMENTOS
+
+═══════════════════════════════════════════════════════════════════
+NIVEL 1: WHILE DE DÍAS
+═══════════════════════════════════════════════════════════════════
+
+int diaSeleccionado = -1;
+
+while (diaSeleccionado != 0) {
+    System.out.print("Seleccione día (1-5) o 0 para salir: ");
+    diaSeleccionado = scanner.nextInt();
+    
+    if (diaSeleccionado == 0) {
+        break; // SALE del programa
+    }
+    
+    if (diaSeleccionado < 1 || diaSeleccionado > 5) {
+        continue; // VUELVE a pedir el día
+    }
+    
+    // Aquí va el NIVEL 2
+}
+
+EXPLICACIÓN:
+- Se repite hasta que el usuario escriba 0
+- Si escribe 0: break sale del while
+- Si escribe número inválido: continue vuelve a pedir
+- Si escribe 1-5: continúa al nivel 2
+
+═══════════════════════════════════════════════════════════════════
+NIVEL 2: WHILE DE INGESTAS (dentro del while de días)
+═══════════════════════════════════════════════════════════════════
+
+int ingestaSeleccionada = 0;
+
+while (ingestaSeleccionada != -1) {
+    System.out.println("1 (Desayuno) / 2 (Media mañana) / ... / -1 (Menu anterior)");
+    ingestaSeleccionada = scanner.nextInt();
+    
+    if (ingestaSeleccionada == -1) {
+        break; // SALE de este while, vuelve al while de días
+    }
+    
+    if (ingestaSeleccionada < 1 || ingestaSeleccionada > 5) {
+        continue; // VUELVE a pedir la ingesta
+    }
+    
+    // Aquí va el NIVEL 3
+}
+
+EXPLICACIÓN:
+- Se repite hasta que el usuario escriba -1
+- Si escribe -1: break sale de este while y vuelve al menú de días
+- Si escribe número inválido: continue vuelve a pedir
+- Si escribe 1-5: continúa al nivel 3
+
+═══════════════════════════════════════════════════════════════════
+NIVEL 3: WHILE DE ALIMENTOS (dentro del while de ingestas)
+═══════════════════════════════════════════════════════════════════
+
+String alimentoIngresado = "";
+
+while (true) {  // Bucle infinito, salimos con break
+    System.out.println("Ingrese un alimento... (-1 para terminar / -2 para listar)");
+    alimentoIngresado = scanner.nextLine();
+    
+    if (alimentoIngresado.equals("-1")) {
+        break; // SALE de este while, vuelve al while de ingestas
+    }
+    
+    if (alimentoIngresado.equals("-2")) {
+        // Mostrar alimentos actuales
+        System.out.println("Alimentos: " + array[indice]);
+        continue; // VUELVE a pedir otro alimento
+    }
+    
+    // Guardar el alimento
+    if (array[indice].equals("")) {
+        array[indice] = alimentoIngresado;
+    } else {
+        array[indice] = array[indice] + ", " + alimentoIngresado;
+    }
+}
+
+EXPLICACIÓN:
+- while (true) = bucle infinito, se repite siempre
+- Salimos SOLO con break cuando escriben -1
+- Si escriben -2: mostramos y hacemos continue
+- Si escriben un alimento: lo guardamos y continuamos el bucle
+
+═══════════════════════════════════════════════════════════════════
+FLUJO COMPLETO - EJEMPLO
+═══════════════════════════════════════════════════════════════════
+
+Usuario escribe: 3 (día)
+    ↓
+Entra al WHILE de ingestas
+
+Usuario escribe: 1 (Desayuno)
+    ↓
+Entra al WHILE de alimentos
+
+Usuario escribe: Café con leche
+    ↓
+Se guarda, continúa el while de alimentos
+
+Usuario escribe: Tostadas
+    ↓
+Se guarda, continúa el while de alimentos
+
+Usuario escribe: -1
+    ↓
+break → SALE del while de alimentos
+    ↓
+Vuelve al WHILE de ingestas
+
+Usuario escribe: -1
+    ↓
+break → SALE del while de ingestas
+    ↓
+Vuelve al WHILE de días
+
+Usuario escribe: 0
+    ↓
+break → SALE del while de días
+    ↓
+Programa termina
+
+═══════════════════════════════════════════════════════════════════
+DIFERENCIA ENTRE BREAK Y CONTINUE
+═══════════════════════════════════════════════════════════════════
+
+BREAK:
+- SALE completamente del while más cercano
+- No vuelve a verificar la condición
+- Va a la línea DESPUÉS del while
+
+CONTINUE:
+- SALTA a la siguiente iteración del while
+- Vuelve a verificar la condición
+- Va al INICIO del while
+
+EJEMPLO:
+
+while (i < 5) {
+    if (condicion1) {
+        break;     // Sale del while, va a la línea después
+    }
+    if (condicion2) {
+        continue;  // Vuelve al inicio del while
+    }
+    // código normal
+}
+// break viene aquí
+
+═══════════════════════════════════════════════════════════════════
+TIPS PARA PRACTICAR
+═══════════════════════════════════════════════════════════════════
+
+1. Empieza con UN solo while (solo seleccionar día)
+2. Luego agrega el segundo while (seleccionar ingesta)
+3. Finalmente agrega el tercer while (agregar alimentos)
+
+4. Usa System.out.println() para ver en qué parte del código estás:
+   System.out.println("DEBUG: Entrando al while de días");
+
+5. Prueba con valores pequeños primero (2 días, 2 ingestas)
+
+6. Recuerda SIEMPRE:
+   - scanner.nextLine() después de scanner.nextInt()
+   - .equals() para comparar Strings, NO ==
+
+═══════════════════════════════════════════════════════════════════
+EJERCICIO PARA TI
+═══════════════════════════════════════════════════════════════════
+
+Intenta modificar el código para:
+
+1. Agregar una opción -3 para BORRAR todos los alimentos de una ingesta
+2. Agregar un contador que muestre cuántos alimentos has ingresado
+3. Modificar el menú para que al inicio muestre los días que ya tienen datos
+
+¡Practica y pregunta si tienes dudas!
+
+═══════════════════════════════════════════════════════════════════

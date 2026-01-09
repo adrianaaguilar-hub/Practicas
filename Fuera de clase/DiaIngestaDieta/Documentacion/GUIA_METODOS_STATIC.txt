@@ -1,0 +1,279 @@
+═══════════════════════════════════════════════════════════════════
+    GUÍA COMPLETA: MÉTODOS STATIC Y HERRAMIENTAS DE ARRAYS
+═══════════════════════════════════════════════════════════════════
+
+📚 ÍNDICE:
+1. ¿Qué son los métodos static?
+2. Sintaxis y estructura
+3. Código con métodos static (explicado línea por línea)
+4. Ventajas de usar métodos
+5. Arrays.toString(), Arrays.fill(), etc.
+
+
+═══════════════════════════════════════════════════════════════════
+1️⃣ ¿QUÉ SON LOS MÉTODOS STATIC?
+═══════════════════════════════════════════════════════════════════
+
+Un método static es como "bautizar" un pedazo de código que puedes
+reutilizar muchas veces sin tener que escribirlo de nuevo.
+
+ANALOGÍA:
+- Sin métodos: Cada vez que quieres hacer un sándwich, describes
+               todos los pasos completos
+- Con métodos: "Hacer sándwich" es una instrucción que ya sabes,
+               solo la llamas por su nombre
+
+
+EJEMPLO SIMPLE:
+───────────────────────────────────────────────────────────────────
+public class Ejemplo {
+    
+    // BAUTIZAR el código (definir el método)
+    public static void saludar() {
+        System.out.println("¡Hola!");
+        System.out.println("Bienvenido");
+    }
+    
+    public static void main(String[] args) {
+        // USAR el código (llamar al método)
+        saludar();  // ← Solo escribes el nombre
+        saludar();  // ← Lo puedes llamar muchas veces
+    }
+}
+
+SALIDA:
+¡Hola!
+Bienvenido
+¡Hola!
+Bienvenido
+
+
+═══════════════════════════════════════════════════════════════════
+2️⃣ SINTAXIS Y ESTRUCTURA
+═══════════════════════════════════════════════════════════════════
+
+ESTRUCTURA GENERAL:
+───────────────────────────────────────────────────────────────────
+public static TIPO_RETORNO nombreMetodo(PARAMETROS) {
+    // Código del método
+    return valor; // Si el tipo NO es void
+}
+
+
+COMPONENTES:
+───────────────────────────────────────────────────────────────────
+┌─ public static void saludar() {
+│      ▲      ▲    ▲     ▲      ▲
+│      │      │    │     │      └─ Paréntesis (vacíos = sin parámetros)
+│      │      │    │     └──────── Nombre del método
+│      │      │    └────────────── void = no retorna nada
+│      │      └─────────────────── static = se puede llamar sin objeto
+│      └────────────────────────── public = accesible desde cualquier lugar
+└─ System.out.println("¡Hola!");
+   }
+
+
+TIPOS DE MÉTODOS:
+───────────────────────────────────────────────────────────────────
+
+A) SIN PARÁMETROS, SIN RETORNO (void):
+   public static void saludar() {
+       System.out.println("Hola");
+   }
+   
+   // Llamar:
+   saludar();
+
+
+B) CON PARÁMETROS, SIN RETORNO (void):
+   public static void saludarPersona(String nombre) {
+       System.out.println("Hola " + nombre);
+   }
+   
+   // Llamar:
+   saludarPersona("Juan");
+
+
+C) SIN PARÁMETROS, CON RETORNO:
+   public static int obtenerNumero() {
+       return 42;
+   }
+   
+   // Llamar:
+   int numero = obtenerNumero();
+
+
+D) CON PARÁMETROS, CON RETORNO:
+   public static int sumar(int a, int b) {
+       return a + b;
+   }
+   
+   // Llamar:
+   int resultado = sumar(5, 3);  // resultado = 8
+
+
+═══════════════════════════════════════════════════════════════════
+3️⃣ CÓDIGO CON MÉTODOS STATIC - EXPLICADO LÍNEA POR LÍNEA
+═══════════════════════════════════════════════════════════════════
+
+Ver archivo: DiaDietaIngestaVersionIII_CON_METODOS.java
+
+
+═══════════════════════════════════════════════════════════════════
+4️⃣ VENTAJAS DE USAR MÉTODOS
+═══════════════════════════════════════════════════════════════════
+
+✅ MENOS CÓDIGO REPETIDO
+   Antes: Escribir 5 veces el mismo for para mostrar días
+   Ahora: Un método "mostrarDia()" que se llama 5 veces
+
+✅ MÁS FÁCIL DE LEER
+   main() solo tiene las ideas principales
+   Los detalles están en los métodos
+
+✅ MÁS FÁCIL DE CORREGIR
+   Si hay un error en "mostrar día", solo lo corriges en un lugar
+
+✅ REUTILIZABLE
+   Puedes usar el mismo método en diferentes partes del programa
+
+
+═══════════════════════════════════════════════════════════════════
+5️⃣ MÉTODOS DE LA CLASE Arrays
+═══════════════════════════════════════════════════════════════════
+
+IMPORTANTE: Debes importar antes de usar
+───────────────────────────────────────────────────────────────────
+import java.util.Arrays;
+
+
+A) Arrays.toString() - Convertir array a String
+───────────────────────────────────────────────────────────────────
+int[] numeros = {1, 2, 3};
+System.out.println(Arrays.toString(numeros));
+// Muestra: [1, 2, 3]
+
+
+B) Arrays.fill() - Llenar array con un valor
+───────────────────────────────────────────────────────────────────
+String[] dias = new String[5];
+Arrays.fill(dias, "Vacio");
+// dias = ["Vacio", "Vacio", "Vacio", "Vacio", "Vacio"]
+
+
+C) Arrays.sort() - Ordenar array
+───────────────────────────────────────────────────────────────────
+int[] numeros = {5, 2, 8, 1};
+Arrays.sort(numeros);
+// numeros = [1, 2, 5, 8]
+
+
+D) Arrays.copyOf() - Copiar array
+───────────────────────────────────────────────────────────────────
+int[] original = {1, 2, 3};
+int[] copia = Arrays.copyOf(original, original.length);
+// copia = [1, 2, 3] (independiente del original)
+
+
+E) Arrays.equals() - Comparar arrays
+───────────────────────────────────────────────────────────────────
+int[] a = {1, 2, 3};
+int[] b = {1, 2, 3};
+if (Arrays.equals(a, b)) {
+    System.out.println("Son iguales");
+}
+
+
+F) Arrays.binarySearch() - Buscar en array ordenado
+───────────────────────────────────────────────────────────────────
+int[] numeros = {1, 2, 3, 4, 5};
+int posicion = Arrays.binarySearch(numeros, 3);
+// posicion = 2 (índice donde está el 3)
+
+
+═══════════════════════════════════════════════════════════════════
+6️⃣ EJEMPLO COMPLETO: ANTES Y DESPUÉS
+═══════════════════════════════════════════════════════════════════
+
+❌ ANTES (SIN MÉTODOS):
+───────────────────────────────────────────────────────────────────
+public static void main(String[] args) {
+    // Mostrar día 1
+    System.out.println("Día 1:");
+    for (int i = 0; i < 5; i++) {
+        System.out.println(Comida[i] + ": " + Dia1[i]);
+    }
+    
+    // Mostrar día 2
+    System.out.println("Día 2:");
+    for (int i = 0; i < 5; i++) {
+        System.out.println(Comida[i] + ": " + Dia2[i]);
+    }
+    
+    // Mostrar día 3
+    System.out.println("Día 3:");
+    for (int i = 0; i < 5; i++) {
+        System.out.println(Comida[i] + ": " + Dia3[i]);
+    }
+    
+    // ... y así 5 veces
+}
+
+
+✅ DESPUÉS (CON MÉTODOS):
+───────────────────────────────────────────────────────────────────
+// BAUTIZAR (definir el método)
+public static void mostrarDia(int numDia, String[] dia, String[] comidas, String nombre) {
+    System.out.println("Paciente: " + nombre);
+    System.out.println("Día " + numDia + ":");
+    for (int i = 0; i < 5; i++) {
+        System.out.println(comidas[i] + ": " + dia[i]);
+    }
+}
+
+public static void main(String[] args) {
+    // USAR (llamar al método)
+    mostrarDia(1, Dia1, Comida, nombrePaciente);
+    mostrarDia(2, Dia2, Comida, nombrePaciente);
+    mostrarDia(3, Dia3, Comida, nombrePaciente);
+    
+    // ¡Mucho más corto y claro!
+}
+
+
+═══════════════════════════════════════════════════════════════════
+7️⃣ CONCEPTOS CLAVE
+═══════════════════════════════════════════════════════════════════
+
+PARÁMETROS vs ARGUMENTOS:
+───────────────────────────────────────────────────────────────────
+                    ↓ PARÁMETROS (variables que recibe)
+public static void sumar(int a, int b) {
+    System.out.println(a + b);
+}
+
+public static void main(String[] args) {
+    sumar(5, 3);  ← ARGUMENTOS (valores que envías)
+}
+
+
+RETORNO (return):
+───────────────────────────────────────────────────────────────────
+public static int multiplicar(int a, int b) {
+    return a * b;  // ← Devuelve el resultado
+}
+
+int resultado = multiplicar(4, 5);  // resultado = 20
+
+
+VOID (sin retorno):
+───────────────────────────────────────────────────────────────────
+public static void imprimir(String texto) {
+    System.out.println(texto);
+    // NO hay return, solo hace algo
+}
+
+
+═══════════════════════════════════════════════════════════════════
+FIN DE LA GUÍA
+═══════════════════════════════════════════════════════════════════

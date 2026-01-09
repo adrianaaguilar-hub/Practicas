@@ -1,0 +1,251 @@
+═══════════════════════════════════════════════════════════════════
+    GUÍA COMPLETA: JUEGO DE RESCATE DE SOLDADOS
+═══════════════════════════════════════════════════════════════════
+
+📋 OBJETIVO DEL JUEGO:
+   Encontrar soldados escondidos en un océano cubierto de niebla
+   Tienes 5 turnos para encontrarlos todos
+
+
+═══════════════════════════════════════════════════════════════════
+🎯 VALORES DE LA MATRIZ (LOS NÚMEROS IMPORTANTES)
+═══════════════════════════════════════════════════════════════════
+
+ -1  → Agua con niebla (no puedes ver qué hay)
+  0  → Agua despejada (ya miraste, solo hay océano)
+ -2  → Soldado con niebla (¡está ahí pero no lo ves!)
+  2  → Soldado encontrado (¡LO RESCATASTE! \O/)
+
+🔑 REGLA CLAVE: 
+   Los valores NEGATIVOS = tienen niebla
+   Los valores POSITIVOS = están despejados (ya puedes verlos)
+
+
+═══════════════════════════════════════════════════════════════════
+🎮 CÓMO FUNCIONA EL JUEGO (PASO A PASO)
+═══════════════════════════════════════════════════════════════════
+
+1. PREPARACIÓN (antes del bucle):
+   ✓ Crear matriz 8x8 llena de -1 (todo con niebla)
+   ✓ Colocar soldados en posiciones aleatorias (cambiar a -2)
+   ✓ Definir cuántos soldados hay y cuántos turnos tienes
+
+2. BUCLE DEL JUEGO (se repite cada turno):
+   ✓ Imprimir el tablero (mostrando símbolos)
+   ✓ Pedir coordenadas X, Y al usuario
+   ✓ Despejar esa posición (quitar niebla)
+   ✓ Contar cuántos soldados encontraste
+   ✓ Verificar si ganaste O si se acabaron los turnos
+
+3. FIN DEL JUEGO:
+   → Ganaste si encontraste todos los soldados
+   → Perdiste si se acabaron los 5 turnos
+
+
+═══════════════════════════════════════════════════════════════════
+🛠️ MÉTODOS QUE NECESITAS (COMPARADOS CON ASPIRADORA)
+═══════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────┐
+│ colocarSoldados(cantidad, matriz)                               │
+├─────────────────────────────────────────────────────────────────┤
+│ Similar a: ensuciarEscenario() de Aspiradora                    │
+│                                                                  │
+│ ¿Qué hace?                                                       │
+│   - Coloca soldados en posiciones aleatorias                    │
+│   - Usa un bucle do-while hasta colocar TODOS                   │
+│   - Marca las casillas con -2 (soldado con niebla)              │
+│                                                                  │
+│ Estructura:                                                      │
+│   1. Generar posición aleatoria (x, y)                          │
+│   2. Verificar que esa casilla NO tenga ya un soldado           │
+│   3. Si está libre, colocar soldado (-2)                        │
+│   4. Incrementar contador de soldados colocados                 │
+│   5. Repetir hasta colocar todos                                │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ imprimirTablero(matriz)                                          │
+├─────────────────────────────────────────────────────────────────┤
+│ Similar a: imprimirEscenario() de Aspiradora                    │
+│                                                                  │
+│ ¿Qué hace?                                                       │
+│   - Imprime las coordenadas X arriba (0 1 2 3...)               │
+│   - Imprime las coordenadas Y a la izquierda                    │
+│   - Recorre la matriz e imprime símbolos                        │
+│                                                                  │
+│ Ejemplo de salida:                                               │
+│      0  1  2  3  4  5  6  7                                     │
+│   --+-------------------------                                   │
+│   0 |  ?  ?  ?  ? ~~~ ?  ?  ?                                   │
+│   1 |  ?  ? \O/ ? ~~~ ?  ?  ?                                   │
+│   2 |  ?  ?  ?  ?  ?  ?  ?  ?                                   │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ mapear(valor)                                                    │
+├─────────────────────────────────────────────────────────────────┤
+│ IGUAL que en Aspiradora - convierte números a símbolos          │
+│                                                                  │
+│ ¿Qué hace?                                                       │
+│   - Recibe un número de la matriz                               │
+│   - Devuelve el símbolo correspondiente                         │
+│                                                                  │
+│ Tu estilo (sin "tile"):                                          │
+│   String[] simbolos = {" ? ", "~~~", "\\O/"};                   │
+│   if (valor < 0) {                                               │
+│       return simbolos[0];  // Niebla                             │
+│   }                                                              │
+│   return simbolos[valor];  // Agua o soldado                    │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ pedirCoordenadas()                                               │
+├─────────────────────────────────────────────────────────────────┤
+│ NUEVO - no lo usaste en Aspiradora                              │
+│                                                                  │
+│ ¿Qué hace?                                                       │
+│   - Pide X al usuario                                            │
+│   - Pide Y al usuario                                            │
+│   - Devuelve un array con las coordenadas: {y, x}               │
+│                                                                  │
+│ IMPORTANTE: Devuelve {y, x} en ese orden                        │
+│ Porque las matrices son: matriz[fila][columna] = matriz[y][x]   │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ despejarPosicion(matriz, coordenadas)                            │
+├─────────────────────────────────────────────────────────────────┤
+│ CLAVE DEL JUEGO - quita la niebla                               │
+│                                                                  │
+│ ¿Qué hace?                                                       │
+│   - Toma las coordenadas que eligió el usuario                  │
+│   - Convierte el valor negativo a positivo (quita niebla)       │
+│   - Si era -1 → se vuelve 0 (agua visible)                      │
+│   - Si era -2 → se vuelve 2 (soldado visible)                   │
+│                                                                  │
+│ Dos formas de hacerlo:                                           │
+│   1. Con if: if (valor < 0) { valor = valor * -1; }             │
+│   2. Operador ternario: valor = valor < 0 ? valor * -1 : valor; │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ contarSoldadosEncontrados(matriz, cantidadTotal)                 │
+├─────────────────────────────────────────────────────────────────┤
+│ Similar a: estaSucio() de Aspiradora (pero al revés)            │
+│                                                                  │
+│ ¿Qué hace?                                                       │
+│   - Recorre toda la matriz                                       │
+│   - Cuenta cuántos valores == 2 hay (soldados encontrados)      │
+│   - Compara con la cantidad total                               │
+│   - Devuelve true si encontraste todos                          │
+│                                                                  │
+│ Diferencia con estaSucio():                                      │
+│   estaSucio → busca si HAY suciedad (>0)                        │
+│   contarEncontrados → busca si encontraste TODOS los soldados   │
+└─────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════
+📝 ESTRUCTURA DEL MAIN (COMO EN ASPIRADORA)
+═══════════════════════════════════════════════════════════════════
+
+public static void main(String[] args) {
+    
+    // 1. INICIALIZACIÓN (antes del bucle)
+    Scanner scanner = new Scanner(System.in);
+    
+    int[][] tablero = crear matriz 8x8 llena de -1
+    
+    final int TOTAL_SOLDADOS = 3;  // Puedes cambiar este número
+    final int TOTAL_TURNOS = 5;
+    
+    colocarSoldados(TOTAL_SOLDADOS, tablero);
+    
+    int turnoActual = 0;
+    boolean continuarJugando = true;
+    
+    
+    // 2. BUCLE PRINCIPAL (como tu do-while de Aspiradora)
+    do {
+        imprimirTablero(tablero);
+        
+        int[] coordenadas = pedirCoordenadas();
+        despejarPosicion(tablero, coordenadas);
+        
+        boolean ganoElJuego = contarSoldadosEncontrados(tablero, TOTAL_SOLDADOS);
+        
+        turnoActual = turnoActual + 1;
+        
+        continuarJugando = turnoActual < TOTAL_TURNOS && !ganoElJuego;
+        
+    } while (continuarJugando);
+    
+    
+    // 3. MENSAJE FINAL
+    if (ganoElJuego) {
+        System.out.println("¡GANASTE! Encontraste todos los soldados");
+    } else {
+        System.out.println("Se acabaron los turnos. GAME OVER");
+    }
+    
+    scanner.close();
+}
+
+
+═══════════════════════════════════════════════════════════════════
+🎯 DIFERENCIAS CON ASPIRADORA (PARA QUE LO ENTIENDAS MEJOR)
+═══════════════════════════════════════════════════════════════════
+
+ASPIRADORA                      →  RESCATE
+─────────────────────────────────────────────────────────────────
+Movimiento automático           →  Usuario elige coordenadas
+Aspiradora limpia (-1)          →  Despejar niebla (*-1)
+Gato ensucia (+1)               →  No hay enemigo
+estaSucio() busca >0            →  contarEncontrados() busca ==2
+Se acaba cuando limpio          →  Se acaba en 5 turnos O al ganar
+Usa posiciones [y, x]           →  IGUAL usa [y, x]
+Mapear con array de Strings     →  IGUAL mapear con array
+
+
+═══════════════════════════════════════════════════════════════════
+💡 CONSEJOS PARA TU EXAMEN
+═══════════════════════════════════════════════════════════════════
+
+✓ Usa nombres en ESPAÑOL que entiendas (tablero, soldados, niebla)
+✓ NO uses "tile" - usa "simbolo" o "valor"
+✓ Crea constantes con final para valores importantes
+✓ Comenta qué hace cada método (como haces en Aspiradora)
+✓ Prueba cada método individualmente antes de unirlos en main
+✓ El main es solo para COORDINAR los métodos
+
+
+═══════════════════════════════════════════════════════════════════
+🚀 PLAN DE PRÁCTICA
+═══════════════════════════════════════════════════════════════════
+
+DÍA 1: Crear métodos básicos
+   → mapear()
+   → imprimirTablero()
+   
+DÍA 2: Crear métodos de configuración
+   → colocarSoldados()
+   → pedirCoordenadas()
+   
+DÍA 3: Crear lógica del juego
+   → despejarPosicion()
+   → contarSoldadosEncontrados()
+   
+DÍA 4: Unir todo en el main
+   → Inicializar variables
+   → Crear el bucle do-while
+   → Coordinar métodos
+   
+DÍA 5: Probar y mejorar
+   → Agregar validaciones
+   → Mejorar mensajes
+   → Probar casos límite
+
+
+¡MUCHA SUERTE EN TU EXAMEN! 🍀
+Recuerda: Ya lo hiciste con Aspiradora, ¡puedes hacerlo de nuevo!
