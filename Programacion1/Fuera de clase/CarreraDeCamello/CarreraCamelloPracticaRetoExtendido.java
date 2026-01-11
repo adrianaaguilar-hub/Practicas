@@ -1,8 +1,7 @@
-package CarreraDeCamello;
-
+package Programacion1.CarreraDeCamello;
 import java.util.Scanner;
 
-public class CarreraCamelloPractica {
+public class CarreraCamelloPracticaRetoExtendido {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -61,7 +60,7 @@ public class CarreraCamelloPractica {
         final double PROBABILIDAD_DE_TROPIEZO = 0.1;
 
         while (casillaPosicion < META && turno < TURNO_MAXIMO) {
-            turno++;
+            turno = turno + 1;
             
             if (turnosPerdidos > 0) {
                 System.out.println();
@@ -75,7 +74,7 @@ public class CarreraCamelloPractica {
                 System.out.print("Elija un agujero: ");
 
                 int agujeroElegido = scanner.nextInt();
-                scanner.nextLine(); 
+                
                 
                 int avance = 0;
                 double probabilidad = Math.random();

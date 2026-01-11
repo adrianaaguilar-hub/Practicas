@@ -1,4 +1,4 @@
-package PracticasdeClase.PracticaPreExamenFinal;
+package Programacion1.PracticasdeClase.PracticaPreExamenFinal;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package CarreraDeCamello;
+package Programacion1.CarreraDeCamello;
 import java.util.Scanner;
 
 public class CarreraCamelloPracticaVersionBasica {

@@ -1,8 +1,8 @@
-package CarreraDeCamello;
+package Programacion1.CarreraDeCamello;
 
 import java.util.Scanner;
 
-public class CarreraCamelloPracticaRetoAmpliado {
+public class CarreraCamelloPractica {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -25,6 +25,7 @@ public class CarreraCamelloPracticaRetoAmpliado {
 
         final int META = 60;
 
+        
         System.out.println();
         System.out.println("===================================");
         System.out.println("    CARRERA DE CAMELLOS  ;--;'    ");
@@ -43,17 +44,6 @@ public class CarreraCamelloPracticaRetoAmpliado {
         System.out.println("===================================");
         System.out.println();
 
-        System.out.println(">>> TU CAMELLO <<<");
-        System.out.println(VALLA);
-        System.out.println(VALLA_NUMEROS);
-        System.out.println(VALLA_POSICION);
-        System.out.println(VALLA);
-        System.out.println(SALIDA_CAMELLO + CAMELLO);
-        System.out.println(VALLA);
-        System.out.println();
-        System.out.println("===================================");
-        System.out.println();
-        System.out.println(">>> CAMELLO DEL COMPUTADOR <<<");
         System.out.println(VALLA);
         System.out.println(VALLA_NUMEROS);
         System.out.println(VALLA_POSICION);
@@ -62,18 +52,17 @@ public class CarreraCamelloPracticaRetoAmpliado {
         System.out.println(VALLA);
 
         int casillaPosicion = 0;
-        int casillaPosicionComputador = 0;
-        int intentosFallidos = 0;
-        int turnosPerdidos = 0;
         int turno = 0;
-
+        int intentosFallidos = 0; 
+        int turnosPerdidos = 0; 
+        
         final int TURNO_MAXIMO = 50;
         final int NUMERO_FALLIDO_DE_INTENTOS_TRES = 3;
         final double PROBABILIDAD_DE_TROPIEZO = 0.1;
 
-        while (casillaPosicion < META && casillaPosicionComputador < META && turno < TURNO_MAXIMO) {
-            turno = turno + 1;
-
+        while (casillaPosicion < META && turno < TURNO_MAXIMO) {
+            turno++;
+            
             if (turnosPerdidos > 0) {
                 System.out.println();
                 System.out.println("Turno " + turno + " - PERDIDO (tropiezo anterior)");
@@ -82,22 +71,24 @@ public class CarreraCamelloPracticaRetoAmpliado {
             } else {
                 System.out.println();
                 System.out.println("Turno " + turno);
+                System.out.println("===================================");
                 System.out.print("Elija un agujero: ");
 
                 int agujeroElegido = scanner.nextInt();
-
+                scanner.nextLine(); 
+                
                 int avance = 0;
                 double probabilidad = Math.random();
                 double tropiezo = Math.random();
-
+                
                 if (tropiezo < PROBABILIDAD_DE_TROPIEZO) {
                     System.out.println("¡El camello TROPIEZA! Pierde 2 turnos.");
                     avance = 0;
                     turnosPerdidos = 2;
-                    intentosFallidos++;
+                    intentosFallidos++; 
                 } else {
                     boolean acierta = false;
-
+                    
                     if (agujeroElegido == 1) {
                         if (probabilidad < PROBABILIDAD_AGUJERO_UNO) {
                             avance = CAMELLO_AVANZA_UNO;
@@ -119,26 +110,22 @@ public class CarreraCamelloPracticaRetoAmpliado {
                             acierta = true;
                         }
                     }
-
+                    
                     if (acierta) {
-                        intentosFallidos = 0;
+                        intentosFallidos = 0; 
                     } else {
                         intentosFallidos = intentosFallidos + 1;
                         if (intentosFallidos >= NUMERO_FALLIDO_DE_INTENTOS_TRES) {
                             System.out.println("¡3 FALLOS CONSECUTIVOS! Vuelves a la casilla 0.");
                             casillaPosicion = 0;
-                            intentosFallidos = 0;
+                            intentosFallidos = 0; 
                         }
                     }
                 }
 
                 casillaPosicion = casillaPosicion + avance;
 
-                int avanceComputador = (int) (Math.random() * 3) + 1;
-                casillaPosicionComputador = casillaPosicionComputador + avanceComputador;
-
                 System.out.println();
-                System.out.println(">>> TU CAMELLO <<<");
                 System.out.println(VALLA);
                 System.out.println(VALLA_NUMEROS);
                 System.out.println(VALLA_POSICION);
@@ -148,53 +135,20 @@ public class CarreraCamelloPracticaRetoAmpliado {
                 System.out.println();
 
                 if (avance > 0) {
-                    System.out.println("Avanza " + avance + " casillas - Esta en la casilla " + casillaPosicion);
+                    System.out.println(
+                            "Turno " + turno + " - Avanza " + avance + " casillas - Esta en la casilla " + casillaPosicion);
                 } else {
-                    System.out.println("No avanza ninguna casilla - Esta en la casilla " + casillaPosicion);
+                    System.out.println(
+                            "Turno " + turno + " - No avanza ninguna casilla - Esta en la casilla " + casillaPosicion);
                 }
-
-                System.out.println("===================================");
-                System.out.println();
-                System.out.println(">>> CAMELLO DEL COMPUTADOR <<<");
-                System.out.println(VALLA);
-                System.out.println(VALLA_NUMEROS);
-                System.out.println(VALLA_POSICION);
-                System.out.println(VALLA);
-                System.out.println(SALIDA_CAMELLO + ESPACIO.repeat(casillaPosicionComputador) + CAMELLO);
-                System.out.println(VALLA);
-                System.out.println();
-                System.out.println("El computador avanza " + avanceComputador + " casillas - Esta en la casilla "
-                        + casillaPosicionComputador);
-                System.out.println("===================================");
             }
         }
 
         System.out.println();
-        System.out.println("===================================");
-        System.out.println("         FIN DE LA CARRERA         ");
-        System.out.println("===================================");
-        if (casillaPosicion >= META && casillaPosicionComputador >= META) {
-            if (casillaPosicion > casillaPosicionComputador) {
-                System.out.println("¡FELICIDADES! TU GANASTE llegando a la casilla " + casillaPosicion);
-                System.out.println("El computador llegó a la casilla " + casillaPosicionComputador);
-            } else if (casillaPosicionComputador > casillaPosicion) {
-                System.out.println("¡EL COMPUTADOR GANO! Llegó a la casilla " + casillaPosicionComputador);
-                System.out.println("Tu llegaste a la casilla " + casillaPosicion);
-            } else {
-                System.out.println("¡EMPATE! Ambos llegaron a la casilla " + META);
-            }
-        } else if (casillaPosicion >= META) {
-            System.out.println(
-                    "¡FELICIDADES! TU GANASTE llegando a la casilla " + casillaPosicion + " en " + turno + " turnos.");
-            System.out.println("El computador se quedó en la casilla " + casillaPosicionComputador);
-        } else if (casillaPosicionComputador >= META) {
-            System.out.println("¡EL COMPUTADOR GANO! Llegó a la casilla " + casillaPosicionComputador + " en " + turno
-                    + " turnos.");
-            System.out.println("Tu te quedaste en la casilla " + casillaPosicion);
+        if (casillaPosicion >= META) {
+            System.out.println("¡FELICIDADES! El camello llegó a la meta en la casilla " + casillaPosicion + " en " + turno + " turnos.");
         } else {
-            System.out.println("GAME OVER - Alcanzaron el límite de " + TURNO_MAXIMO + " turnos.");
-            System.out.println("Tu posición final: " + casillaPosicion);
-            System.out.println("Computador posición final: " + casillaPosicionComputador);
+            System.out.println("GAME OVER - Alcanzaste el límite de " + TURNO_MAXIMO + " turnos. Posición final: " + casillaPosicion);
         }
 
         scanner.close();

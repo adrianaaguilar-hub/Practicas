@@ -1,4 +1,4 @@
-package PracticasdeClase;
+package Programacion1.PracticasdeClase;
 
 import java.util.Scanner;
 

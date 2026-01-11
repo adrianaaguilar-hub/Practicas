@@ -1,4 +1,4 @@
-package EdificioPractica;
+package Programacion1.EdificioPractica;
 public class EdificioPractica {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Parcial1Practica;
+package Programacion1.Parcial1Practica;
 
 public class MainV2 {
     public static void main(String args[]) {

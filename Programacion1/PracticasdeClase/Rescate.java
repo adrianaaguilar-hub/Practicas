@@ -1,4 +1,4 @@
-package PracticasdeClase;
+package Programacion1.PracticasdeClase;
 
 public class Rescate {
     public static void main(String[] args) {
