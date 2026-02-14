@@ -1,6 +1,8 @@
 package Programación2;
 import java.util.Scanner;
 public class PyEdlin {
+    static String[] lineasEstadoAnterior = new String[10];
+        static int lineaActivaAnterior = -1;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String [] lineas  = new String[10];
@@ -19,6 +21,8 @@ public class PyEdlin {
         boolean usuarioActivo = true;
         String comando;
         
+
+        
         
 
         do {
@@ -26,11 +30,15 @@ public class PyEdlin {
             comando = scanner.nextLine();
 
             switch (comando) {
-            case "L" -> lineaActiva = DefinirLineaActiva(lineaActiva, lineas, scanner);
-            case "E" -> EditarLineaActiva(lineaActiva, lineas, scanner);
-            case "I" -> IntercambiarLineaActiva(lineaActiva, lineas, scanner);
-            case "B" -> BorrarContenidoDeLineaActiva(lineaActiva,lineas, scanner);
-            case "D" -> DeshacerUltimaAccion(lineaActiva, lineas, scanner);
+            case "L" -> {GuardarEstadoAnterior(  lineaActiva,  lineas);
+                        lineaActiva = DefinirLineaActiva(lineaActiva, lineas, scanner); }
+            case "E" -> {GuardarEstadoAnterior(   lineaActiva,  lineas);
+                        EditarLineaActiva(lineaActiva, lineas, scanner);}
+            case "I" -> {GuardarEstadoAnterior(   lineaActiva,  lineas);
+                        IntercambiarLineaActiva(lineaActiva, lineas, scanner);}
+            case "B" -> {GuardarEstadoAnterior(  lineaActiva,  lineas);
+                        BorrarContenidoDeLineaActiva(lineaActiva,lineas, scanner);}
+            case "D" -> DeshacerUltimaAccion(lineasEstadoAnterior, lineaActiva, lineas, scanner);
             case "S" -> usuarioActivo = false;
             default -> System.out.println("Comando no reconocido");
             }
@@ -42,7 +50,17 @@ public class PyEdlin {
 
         scanner.close(); 
     }
+
+    static void GuardarEstadoAnterior( int lineaActiva, String[] lineas) {
+        lineaActivaAnterior = lineaActiva;
+        for (int i = 0; i < lineas.length; i++) {
+            lineasEstadoAnterior[i] = lineas[i];
+        }
+    }
+
     static int DefinirLineaActiva(int lineaActiva, String[] lineas, Scanner scanner){
+        
+        
         System.out.println("Elije el numero de la linea activa");
         lineaActiva = scanner.nextInt();
         
@@ -67,8 +85,21 @@ public class PyEdlin {
     static void BorrarContenidoDeLineaActiva(int lineaActiva, String[] lineas, Scanner scanner){
         lineas[lineaActiva] = " ";
     }
-    static void DeshacerUltimaAccion(int lineaActiva, String[] lineas, Scanner scanner){
-        lineas[lineaActiva] = 
+    static void DeshacerUltimaAccion(String[] lineas, Scanner scanner) {
+        if (lineaActivaAnterior != -1) {  // ¿Hay algo guardado?
+            // SÍ hay historial, restáuralo
+            for (int i = 0; i < lineas.length; i++) {
+                lineas[i] = lineasEstadoAnterior[i];
+            }
+            System.out.println("✓ Deshecho");
+            
+            // Ahora que ya lo usaste, bórralo:
+            lineaActivaAnterior = -1;  // "Ya no hay historial"
+            
+        } else {
+            // NO hay historial
+            System.out.println("No hay nada que deshacer");
+        }
     }
     static void MostrarMenu (String[] lineas, int lineaActiva) {
         
