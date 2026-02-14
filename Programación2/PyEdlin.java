@@ -26,7 +26,7 @@ public class PyEdlin {
             comando = scanner.nextLine();
 
             switch (comando) {
-            case "L" -> DefinirLineaActiva(lineaActiva, lineas, scanner);
+            case "L" -> lineaActiva = DefinirLineaActiva(lineaActiva, lineas, scanner);
             case "E" -> EditarLineaActiva(lineaActiva, lineas, scanner);
             case "I" -> IntercambiarLineaActiva(lineaActiva, lineas, scanner);
             case "B" -> BorrarContenidoDeLineaActiva(lineaActiva,lineas, scanner);
@@ -48,17 +48,27 @@ public class PyEdlin {
         
         return lineaActiva;
     }
-    static void EditarLineaActiva(int lineaActiva,String[] lineas,Scanner scanner){
-        
+    static void EditarLineaActiva (int lineaActiva, String[] lineas,Scanner scanner) {
+        System.out.println("Escribe");
+        lineas[lineaActiva] = scanner.nextLine();
+
     }
     static void IntercambiarLineaActiva(int lineaActiva, String[] lineas, Scanner scanner){
-        
+        System.out.print("Primera línea: ");
+        int lineaInicial = scanner.nextInt();
+        System.out.print("Segunda línea: ");
+        int lineaAIntercambiar = scanner.nextInt();
+        scanner.nextLine();
+
+        String nuevo = lineas[lineaInicial];
+        lineas[lineaInicial] = lineas[lineaAIntercambiar];
+        lineas[lineaAIntercambiar] = nuevo;                  
     }
     static void BorrarContenidoDeLineaActiva(int lineaActiva, String[] lineas, Scanner scanner){
-        
+        lineas[lineaActiva] = " ";
     }
     static void DeshacerUltimaAccion(int lineaActiva, String[] lineas, Scanner scanner){
-        
+        lineas[lineaActiva] = 
     }
     static void MostrarMenu (String[] lineas, int lineaActiva) {
         
