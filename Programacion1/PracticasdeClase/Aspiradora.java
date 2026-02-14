@@ -18,14 +18,13 @@ public class Aspiradora {
 
         int[] posicionAspiradora = { 4, 4 };
         int [] posicionGato = {3,3};
-        String respuestaUsuario = " ";
 
         ensuciarEscenario(superficie);
         imprimirEscenario(superficie, posicionAspiradora, posicionGato);
 
         do {
             System.out.println("Presiona ENTER para el siguiente movimiento");
-            respuestaUsuario = scanner.nextLine();
+            scanner.nextLine();
             
             moverAspiradora(posicionAspiradora, superficie);  
             limpiarEscenario(superficie, posicionAspiradora);

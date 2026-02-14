@@ -59,14 +59,12 @@ class RescateOriginal {
     }
 
     static int[] elegirPosicion(int[][] escenario) {
-        final int MAX_X = escenario[0].length;
-        final int MAX_Y = escenario.length;
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingresa coordenada X: ");
         int x = scanner.nextInt();
         System.out.println("Ingresa coordenada Y: ");
         int y = scanner.nextInt();
+        scanner.close();
 
         return new int[] { y, x };
 
