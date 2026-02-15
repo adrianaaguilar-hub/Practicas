@@ -86,6 +86,8 @@ public class PyEdlin {
         lineas[lineaActiva] = " ";
     }
     static void DeshacerUltimaAccion(String[] lineas, Scanner scanner) {
+        //Codigo comentado para recordar como funciona un COntrol Z :)
+        
         if (lineaActivaAnterior != -1) {  // ¿Hay algo guardado?
             // SÍ hay historial, restáuralo
             for (int i = 0; i < lineas.length; i++) {
