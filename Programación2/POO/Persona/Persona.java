@@ -1,4 +1,4 @@
-package Programación2.POO;
+package Programación2.POO.Persona;
 
 public class Persona {
 

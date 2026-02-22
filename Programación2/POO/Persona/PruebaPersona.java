@@ -1,6 +1,6 @@
-package Programación2.POO;
+package Programación2.POO.Persona;
 
-public class Estudiante {
+public class PruebaPersona {
     public static void main(String[] args) {
         
         var persona = new Persona("Adri", 10);
