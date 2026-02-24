@@ -4,21 +4,41 @@ import java.util.Scanner;
 
 public class Calificaciones {
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-        
-        Estudiante estudiante1 = new Estudiante("Adriana");
-        
+        Scanner scanner = new Scanner(System.in);
+        boolean programaActivo = true;
         int nota;
+
+        Estudiante estudiante1 = new Estudiante("Adriana");
+        do {
+        
         System.out.println("Ingresa la calificación 1:");
-        nota = entrada.nextInt();
+        nota = scanner.nextInt();
         estudiante1.AñadirCalificacion(nota);
         
         System.out.println("Ingresa la calificación 2:");
-        nota = entrada.nextInt();
+        nota = scanner.nextInt();
+        scanner.nextLine();
         estudiante1.AñadirCalificacion(nota);
         
+        System.out.println("Si desea ver su promedio presione P");
+        System.out.println("Si desea salir del programa presione S");
+        String comando = scanner.nextLine();
+
+       switch (comando) {
+            case "P" -> estudiante1.MostrarPromedio();
+            case "S" -> programaActivo = false;
+
         
+            default -> System.out.println("Comando no reconocido");
+               
+        }
+
+        } while (programaActivo);
         
-        entrada.close();
+
+        
+        scanner.close();
     }
-}
+
+    }
+
