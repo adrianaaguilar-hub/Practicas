@@ -6,30 +6,41 @@ public class Estudiante {
     
     String nombre;
     int [] calificacion = new int [10];
-
+    
     int contador = 0;
-
-    public Estudiante (String nombre, int [] calificacion) {
+    
+    public Estudiante (String nombre) {
         this.nombre = nombre;
         
     }
 
 
     public void AñadirCalificacion (int nota) {
-        if (contador < 10) {
-            calificacion[contador] = nota;  // GUARDA la nota
-            System.out.println("Has agregado la nota: " + nota);
-            contador = contador + 1;
-        } else {
-            System.out.println("Llegaste al máximo de notas, 10");
-        }
+        this.calificacion[this.contador] = nota;
+        this.contador ++;
     }
 
-    public void PromedioDeCalificaciones () {
-        if (contador == 0) {
-            return 0;
+    public double PromedioDeCalificaciones () {
+        int sumaCalificaciones = 0;
+        
+            for (int i =0; i < contador; i++){
+                sumaCalificaciones = sumaCalificaciones + calificacion[i];
+
+            }
+        
+        double promedioCalificaciones = sumaCalificaciones / contador;
+
+        return promedioCalificaciones;
         }
         
+    public void MostrarPromedio() {
+        double promedio = PromedioDeCalificaciones();
+        if (promedio >= 6) {
+            System.out.println("Felicidades has aprobado con " + promedio );
+        } else {
+            System.out.println("Has desaprobado con" + promedio );
+        }
+    }    
     }
 
-}
+
