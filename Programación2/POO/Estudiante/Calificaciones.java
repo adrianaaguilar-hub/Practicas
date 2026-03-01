@@ -7,37 +7,49 @@ public class Calificaciones {
         Scanner scanner = new Scanner(System.in);
         boolean programaActivo = true;
         int nota;
+        
 
         Estudiante estudiante1 = new Estudiante("Adriana");
+        
         do {
-        
-        System.out.println("Ingresa la calificación 1:");
-        nota = scanner.nextInt();
-        estudiante1.AñadirCalificacion(nota);
-        
-        System.out.println("Ingresa la calificación 2:");
-        nota = scanner.nextInt();
-        scanner.nextLine();
-        estudiante1.AñadirCalificacion(nota);
-        
-        System.out.println("Si desea ver su promedio presione P");
-        System.out.println("Si desea salir del programa presione S");
-        String comando = scanner.nextLine();
+            ImprimirMenu();
+            
+            String comando = scanner.nextLine().toUpperCase();
 
-       switch (comando) {
-            case "P" -> estudiante1.MostrarPromedio();
-            case "S" -> programaActivo = false;
-
+            switch (comando) {
+                case "A" -> {
+                    if (estudiante1.contador < 10) {
+                        System.out.println("Ingresa la calificación:");
+                        nota = scanner.nextInt();
+                        scanner.nextLine(); 
+                        estudiante1.AñadirCalificacion(nota);
+                        System.out.println("✓ Calificación agregada!");
+                    } else {
+                        System.out.println("Ya tienes 10 calificaciones, no puedes agregar más");
+                    }
+                }
+                case "V" -> estudiante1.MostrarCalificacion();
+                case "P" -> estudiante1.MostrarPromedio();
+                case "S" -> {
+                    System.out.println("Saliendo del programa...");
+                    programaActivo = false;
+                }
+                default -> System.out.println("Comando no reconocido");
+            }
         
-            default -> System.out.println("Comando no reconocido");
-               
-        }
-
         } while (programaActivo);
         
-
-        
         scanner.close();
+    }
+
+    static void ImprimirMenu() {
+        System.out.println("\n=== MENÚ DE CALIFICACIONES ===");
+        System.out.println("Puedes ingresar hasta 10 notas");
+        System.out.println("[A] Agregar una nota nueva");
+        System.out.println("[V] Ver todas tus calificaciones");
+        System.out.println("[P] Ver tu promedio");
+        System.out.println("[S] Salir del programa");
+        System.out.print("Elige una opción: ");
     }
 
     }
