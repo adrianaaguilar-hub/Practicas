@@ -95,11 +95,10 @@ public class PyEdlin {
             }
             System.out.println("✓ Deshecho");
             
-            // Ahora que ya lo usaste, bórralo:
-            lineaActivaAnterior = -1;  // "Ya no hay historial"
+            lineaActivaAnterior = -1;  
             
         } else {
-            // NO hay historial
+            
             System.out.println("No hay nada que deshacer");
         }
     }
