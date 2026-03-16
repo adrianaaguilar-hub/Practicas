@@ -14,10 +14,21 @@ public class Estudiante {
         
     }
 
-
     public void AñadirCalificacion (int nota) {
         this.calificacion[this.contador] = nota;
         this.contador ++;
+    }
+
+    public void MostrarCalificacion() {
+        if (contador == 0) {
+            System.out.println("No tienes calificaciones registradas aún");
+            return;
+        }
+        
+        System.out.println("\n--- Tus Calificaciones ---");
+        for (int i = 0; i < contador; i++) {
+            System.out.println((i + 1) + ". " + this.calificacion[i]);
+        }
     }
 
     public double PromedioDeCalificaciones () {
@@ -38,7 +49,7 @@ public class Estudiante {
         if (promedio >= 6) {
             System.out.println("Felicidades has aprobado con " + promedio );
         } else {
-            System.out.println("Has desaprobado con" + promedio );
+            System.out.println("Has desaprobado con " + promedio );
         }
     }    
     }

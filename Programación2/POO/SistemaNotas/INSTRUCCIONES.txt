@@ -1,0 +1,221 @@
+═══════════════════════════════════════════════════════════
+  📦 SISTEMA DE CALIFICACIONES - GUÍA RÁPIDA
+═══════════════════════════════════════════════════════════
+
+📂 UBICACIÓN:
+   Programación2/POO/SistemaNotas/
+
+📄 ARCHIVOS:
+   ✓ Estudiante.java      → Clase modelo (objeto)
+   ✓ Calificaciones.java  → Clase principal (main)
+   ✓ README.md            → Documentación completa
+   ✓ EXPLICACION_VISUAL.md → Ejemplos visuales
+   ✓ INSTRUCCIONES.txt    → Este archivo
+
+───────────────────────────────────────────────────────────
+🚀 CÓMO EJECUTAR
+───────────────────────────────────────────────────────────
+
+1. Abrir terminal en la carpeta SistemaNotas
+
+2. Compilar:
+   javac Estudiante.java Calificaciones.java
+
+3. Ejecutar:
+   java Programación2.POO.SistemaNotas.Calificaciones
+
+───────────────────────────────────────────────────────────
+🎮 CÓMO USAR EL PROGRAMA
+───────────────────────────────────────────────────────────
+
+El programa muestra un menú con opciones:
+
+[A] Agregar una nota
+    → Te pide ingresar una calificación (0-10)
+    → Puedes agregar hasta 10 notas
+
+[V] Ver todas tus calificaciones
+    → Muestra todas las notas que has ingresado
+
+[P] Ver tu promedio
+    → Calcula y muestra el promedio
+    → Te dice si aprobaste (>=6) o no
+
+[S] Salir del programa
+    → Cierra el programa
+
+───────────────────────────────────────────────────────────
+📚 ESTRUCTURA DEL CÓDIGO
+───────────────────────────────────────────────────────────
+
+ESTUDIANTE.JAVA
+├── Atributos
+│   ├── nombre (String)
+│   ├── calificacion (int[10])
+│   └── contador (int)
+├── Constructor
+│   └── Estudiante(String nombre)
+└── Métodos
+    ├── AñadirCalificacion(int nota)
+    ├── MostrarCalificacion()
+    ├── PromedioDeCalificaciones()
+    └── MostrarPromedio()
+
+CALIFICACIONES.JAVA
+├── main()
+│   ├── Crea objeto Estudiante
+│   ├── Muestra menú
+│   ├── Lee opción del usuario
+│   └── Ejecuta acción correspondiente
+└── ImprimirMenu()
+    └── Muestra las opciones del menú
+
+───────────────────────────────────────────────────────────
+🧠 CONCEPTOS IMPORTANTES
+───────────────────────────────────────────────────────────
+
+CLASE vs OBJETO
+  Clase  = Molde/plantilla (Estudiante.java)
+  Objeto = Instancia concreta (estudiante1)
+
+  Ejemplo:
+    Estudiante estudiante1 = new Estudiante("Adriana");
+    └─ Objeto    └─ Clase          └─ Constructor
+
+THIS
+  Se refiere al objeto actual
+  
+  this.nombre = nombre;
+  ↑            ↑
+  atributo     parámetro
+
+STATIC
+  Pertenece a la clase, no a un objeto
+  
+  static void ImprimirMenu() { ... }
+  
+  Se llama sin crear objeto
+
+VOID vs RETURN
+  void   → No devuelve nada
+  return → Devuelve un valor
+  
+  public void MostrarPromedio() {   // void
+      System.out.println(promedio);
+  }
+  
+  public double Promedio() {        // return
+      return promedio;
+  }
+
+───────────────────────────────────────────────────────────
+✅ CHECKLIST ANTES DE TU CLASE
+───────────────────────────────────────────────────────────
+
+□ Leí README.md para entender el proyecto completo
+□ Leí EXPLICACION_VISUAL.md para entender paso a paso
+□ Compilé y ejecuté el programa
+□ Entiendo qué es una clase vs un objeto
+□ Entiendo para qué sirve el constructor
+□ Entiendo qué hace cada método
+□ Sé cómo crear un objeto nuevo
+□ Sé cómo llamar a los métodos de un objeto
+
+───────────────────────────────────────────────────────────
+🎯 PARA TU EJERCICIO DE MAÑANA
+───────────────────────────────────────────────────────────
+
+PASO 1: Leer el enunciado y buscar SUSTANTIVOS
+        → Estos serán tus CLASES
+
+PASO 2: Identificar CARACTERÍSTICAS del objeto
+        → Estos serán tus ATRIBUTOS
+
+PASO 3: Identificar ACCIONES del objeto
+        → Estos serán tus MÉTODOS
+
+PASO 4: Crear el CONSTRUCTOR
+        → Inicializa los atributos
+
+PASO 5: Implementar los MÉTODOS
+        → Codifica las acciones
+
+PASO 6: Crear el MAIN para PROBAR
+        → Crea objetos y úsalos
+
+───────────────────────────────────────────────────────────
+🐛 ERRORES COMUNES A EVITAR
+───────────────────────────────────────────────────────────
+
+❌ Intentar usar un método sin crear objeto
+   Estudiante.MostrarPromedio();  // ERROR
+
+✅ Crear objeto primero
+   Estudiante e1 = new Estudiante("Ana");
+   e1.MostrarPromedio();  // CORRECTO
+
+───────────────────────────────────────────────────────────
+
+❌ Confundir parámetro con atributo
+   public Estudiante(String nombre) {
+       nombre = nombre;  // ERROR - no asigna nada
+   }
+
+✅ Usar this para diferenciar
+   public Estudiante(String nombre) {
+       this.nombre = nombre;  // CORRECTO
+   }
+
+───────────────────────────────────────────────────────────
+
+❌ Olvidar que los arrays empiezan en 0
+   int[] arr = new int[10];
+   arr[10] = 5;  // ERROR - fuera de rango
+
+✅ Usar índices 0-9
+   arr[0] = 5;   // CORRECTO - primera posición
+   arr[9] = 5;   // CORRECTO - última posición
+
+───────────────────────────────────────────────────────────
+
+❌ Llamar método no-static desde main
+   public static void main(String[] args) {
+       metodoNormal();  // ERROR
+   }
+   
+   void metodoNormal() { }
+
+✅ Hacer el método static O crear objeto
+   static void metodoStatic() { }  // Opción 1
+   
+   // O Opción 2:
+   MiClase obj = new MiClase();
+   obj.metodoNormal();
+
+───────────────────────────────────────────────────────────
+📞 DATOS ÚTILES
+───────────────────────────────────────────────────────────
+
+Compilar una clase:
+  javac NombreClase.java
+
+Compilar varias clases:
+  javac Clase1.java Clase2.java
+
+Ejecutar con package:
+  java paquete.subpaquete.ClaseConMain
+
+Ver archivos compilados:
+  dir *.class    (Windows)
+  ls *.class     (Linux/Mac)
+
+───────────────────────────────────────────────────────────
+
+¡Todo listo para tu clase de mañana! 🎉
+
+Si tienes dudas, revisa:
+  1. EXPLICACION_VISUAL.md   ← Ejemplos paso a paso
+  2. README.md               ← Documentación completa
+  3. El código comentado     ← Hay comentarios en cada parte
+
+═══════════════════════════════════════════════════════════
