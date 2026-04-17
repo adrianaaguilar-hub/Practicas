@@ -1,5 +1,5 @@
 package Programación2.TresEnRaya.src;
-
+import java.util.Scanner;
 public class Coordenada {
     private int fila;
     private int columna;
@@ -18,9 +18,15 @@ public class Coordenada {
         boolean filaValida = this.fila >= 1 && this.fila <= 3;
 
         return columnaValida && filaValida;
+    }
 
     public void pedir () {
-        import s
+         Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Introduce fila (1-3) ");
+        this.fila = scanner.nextInt();
+        System.out.println("Introduce columna (1-3) ");
+        this.columna = scanner.nextInt();
     }    
     
     }
