@@ -20,7 +20,7 @@ public class Coordenada {
         return columnaValida && filaValida;
     }
 
-    public void pedir () {
+    public void pedirCoordenda  () {
          Scanner scanner = new Scanner(System.in);
 
         System.out.println("Introduce fila (1-3) ");
@@ -29,6 +29,5 @@ public class Coordenada {
         this.columna = scanner.nextInt();
     }    
     
-    }
     
 }
