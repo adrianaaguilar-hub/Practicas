@@ -4,7 +4,7 @@ public class Turno {
     private int numeroDeTurnoJugadorX = 0;
     private int numeroDeTurnoJugador0 = 0;
 
-    public Turno () {}
+    public Turno (int numero) {}
 
     public void cambiarTurno () {}
 

@@ -10,7 +10,9 @@ public class Tablero {
 
     }
 
-    public void ponerFicha (Coordenada coordenada, Ficha ficha) {}
+    public void ponerFicha (Coordenada coordenada, Ficha ficha) {
+        Ficha ficha = 
+    }
 
     public boolean hayTresEnRaya (Ficha ficha) {}
     
