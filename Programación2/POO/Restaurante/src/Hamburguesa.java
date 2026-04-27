@@ -9,7 +9,7 @@ public class Hamburguesa {
     private boolean conSalsa;
     private boolean conQueso;
 
-    public Hamburguesa(String nombre, double precio, boolean esVegana, boolean conSalsa, boolean conQueso) {
+    public Hamburguesa(String nombre, double precioBase, boolean esVegana, boolean conSalsa, boolean conQueso) {
         assert precio > 0;
 
         this.nombre = nombre;
@@ -23,7 +23,11 @@ public class Hamburguesa {
         this(nombre, precioBase, true, true, false);
     }
 
-    public int precioBase () {
+    public double getPrecioBase () {
         return precioBase;
+    }
+
+    public String getNombre () {
+        return nombre;
     }
 }
