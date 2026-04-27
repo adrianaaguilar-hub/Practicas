@@ -13,10 +13,16 @@ public class CentroComercial {
         }
         cajas[0] =new Caja
     }
+    public void simular () {
+     do {
+    tiempo.avanzar;
+    this.procesarLlegadaCliente();
 
-    do {
 
-    } while ();
+
+        } while (!tiempo.haFinalizado);
+    }
+    
 
     private void pausar () {
         console.pause(5);
