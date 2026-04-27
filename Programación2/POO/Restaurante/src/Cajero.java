@@ -4,15 +4,17 @@ public class Cajero {
     private String nombre;
 
     public Cajero(String nombre) {
+        assert nombre != null;
         this.nombre = nombre;
     }
 
     public void cobrar(Hamburguesa hamburguesa) {
+        assert hamburguesa != null;
+        
         double precioBase = hamburguesa.getPrecioBase();
+        double precioTotal = GestorPrecios.calcularPrecioFinal(precioBase);
 
-        double precioTotal = GestorPrecios.calcularPrecioFinal();
-
-        this.imprimirTicket(hamburguesa.getNombre(), precioFinal);
+        this.imprimirTicket(hamburguesa.getNombre(), precioTotal);
     }
 
     private void imprimirTicket(String nombreProducto, double total) {
