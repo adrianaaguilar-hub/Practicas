@@ -39,13 +39,24 @@ public class Baraja {
     public void mostrar() {
         console.writeln("BARAJA ");
         Carta carta = this.cima();
-        carta.mostrar();
+        if(carta != null) {
+            carta.mostrar();
+        }
     }
 
+    public Carta cima() {
+        if(ultima > 0) {
+            return cartas[ultima - 1];
+        }
+        return null;
+    }
 
-
-    private Carta cima() {
-        return cartas[ultima-1];
+    public Carta sacar() {
+        if(ultima > 0) {
+            ultima--;
+            return cartas[ultima];
+        }
+        return null;
     }
 
     public void moverA(Descarte descarte) {

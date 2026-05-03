@@ -4,23 +4,32 @@ public class Descarte {
     private Carta carta;
 
     public void mostrar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrar'");
+        if(carta != null) {
+            carta.mostrar();
+        } else {
+            System.out.print("[Vacío]");
+        }
     }
 
     public void moverA(Palo paloDestino) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'moverA'");
+        if(carta != null) {
+            paloDestino.poner(carta);
+            carta = null;
+        }
     }
 
     public void moverA(Columna columnaDestino) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'moverA'");
+        if(carta != null) {
+            columnaDestino.poner(carta);
+            carta = null;
+        }
     }
 
     public void voltear(Baraja baraja) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'voltear'");
+        carta = baraja.cima();
+        if(carta != null) {
+            baraja.sacar();
+        }
     }
 
 }
