@@ -60,7 +60,7 @@ public class Baraja {
     }
 
     public void moverA(Descarte descarte) {
-        this.cartas[ultima] = descarte.cartas[ultima]
+        this.cartas[ultima] = descarte.cartas[ultima];
     }
 
 }
