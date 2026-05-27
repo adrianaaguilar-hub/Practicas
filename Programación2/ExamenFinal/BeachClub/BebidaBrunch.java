@@ -14,6 +14,7 @@ public class BebidaBrunch extends Consumcion {
         return tamañoGrande
     }
 
+    @Override
     private double calcularPrecioFinal () {
         if (esTamañoGrande();) {
             precioFinal = precioBase + extraTamañoGrande;

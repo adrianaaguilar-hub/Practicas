@@ -21,6 +21,7 @@ public class PlatoBrunch extends Consumcion {
         return esVegano;
     }
 
+    @Override
     private double calcularPrecioFinal () {
      double resultado = this.precioBase;
 
