@@ -1,26 +1,20 @@
 package Programación2.ExamenFinal.BeachClub;
 
-public class BebidaBrunch extends Consumcion {
-    private  boolean tamañoGrande;
-    private double precioFinal;
+public class BebidaBrunch extends Consumicion {
+    private boolean tamañoGrande;
     private double extraTamañoGrande = 1.50;
 
-    public BebidaBrunch (String nombre, double precioBase, boolean tamañoGrande) {
+    public BebidaBrunch(String nombre, double precioBase, boolean tamañoGrande) {
         super(nombre, precioBase);
         this.tamañoGrande = tamañoGrande;
     }
 
-    private boolean esTamañoGrande () {
-        return tamañoGrande
-    }
-
     @Override
-    private double calcularPrecioFinal () {
-        if (esTamañoGrande();) {
-            precioFinal = precioBase + extraTamañoGrande;
+    public double calcularPrecioFinal() { 
+        if (tamañoGrande) { 
+            return precioBase + extraTamañoGrande;
         } else {
-            precioFinal = precioBase;
+            return precioBase;
         }
-        return precioFinal;
     }
 }

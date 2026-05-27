@@ -1,36 +1,27 @@
 package Programación2.ExamenFinal.BeachClub;
 
 public class PlatoBrunch extends Consumcion {
-    private  boolean tamañoGrande;
+private boolean tamañoGrande;
     private boolean esVegano;
-    private double precioFinal;
     private double extraTamañoGrande = 1.75;
     private double descuentoVegano = 0.90;
 
-    public PlatoBrunch (String nombre, double precioBase, boolean TamañoGrande, boolean esVegano) {
+    public PlatoBrunch(String nombre, double precioBase, boolean tamañoGrande, boolean esVegano) {
         super(nombre, precioBase);
-        this.TamañoGrande = extraTamañoGrande;
+        this.tamañoGrande = tamañoGrande; 
         this.esVegano = esVegano;
     }
 
-    private boolean esTamañoGrande () {
-        return tamañoGrande;
-    }
-
-    private boolean esVegano () {
-        return esVegano;
-    }
-
     @Override
-    private double calcularPrecioFinal () {
-     double resultado = this.precioBase;
+    public double calcularPrecioFinal () {
+     double resultado = precioBase;
 
-    if (this.tamañoGrande) { 
-        resultado = resultado + this.extraTamañoGrande;
+    if (tamañoGrande) { 
+        resultado = resultado + extraTamañoGrande;
     }
 
-    if (this.esVegano) {
-        resultado = resultado * this.descuentoVegano;
+    if (esVegano) {
+        resultado = resultado * descuentoVegano;
     }
 
     return resultado;
