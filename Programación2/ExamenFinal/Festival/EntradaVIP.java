@@ -11,8 +11,12 @@ public class EntradaVIP extends EntradaGeneral {
 
     @Override
     public double calcularPrecioFinal() {
-        double precioFinal;
-        precioFinal = super.calcularPrecioFinal() + comisionVIP;
-        return precioFinal;
+        
+        if (incluyeBarraLibre) {
+            return super.calcularPrecioFinal() + comisionVIP;
+        } else {
+            return super.calcularPrecioFinal(); 
+        }
+
     }
 }
