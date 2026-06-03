@@ -22,6 +22,6 @@ public class Actividad {
     }
 
     public void mostrar() {
-        System.out.println("Actividad: " + this.nombre + " | Monitor: " + this.monitor + " | Aforo: " + this.aforo + " | Horarios: " + this.horario.length);
+        System.out.println("Actividad: " + nombre + " | Monitor: " + monitor + " | Aforo: " + aforo + " | Horarios: " + horario.length);
     }
 }
