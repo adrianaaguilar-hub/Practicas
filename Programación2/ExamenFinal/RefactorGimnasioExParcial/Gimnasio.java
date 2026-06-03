@@ -1,7 +1,10 @@
 package Programación2.ExamenFinal.RefactorGimnasioExParcial;
 
 public class Gimnasio {
-     private String nombre;
+    private int maxSocios = 100;
+    private int maxActividades = 100;
+    private int maxReservas = 100;
+    private String nombre;
     private Socio[] socios;
     private int numeroSocios;
     private Actividad[] actividades;
@@ -11,11 +14,11 @@ public class Gimnasio {
 
     public Gimnasio(String nombre) {
         this.nombre = nombre;
-        this.socios = new Socio[100];
+        this.socios = new Socio[maxSocios];
         this.numeroSocios = 0;
-        this.actividades = new Actividad[100];
+        this.actividades = new Actividad[maxActividades];
         this.numeroActividades = 0;
-        this.reservas = new Reserva[100];
+        this.reservas = new Reserva[maxReservas];
         this.numeroReservas = 0;
     }
 
