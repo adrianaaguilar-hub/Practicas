@@ -4,7 +4,7 @@ public class Socio {
     private String nombre;
     private String dni;
     private boolean estaActivo;
-    private boolean mensualidadBase = 30.0;
+    private double mensualidadBase = 30.0;
 
     public Socio(String nombre, String dni, boolean estaActivo) {
         this.nombre = nombre;
@@ -19,6 +19,8 @@ public class Socio {
     public double calcularMensualidad() {
     return mensualidadBase;
     }
+    
+
 
     public void mostrar() {
         String estado = estaActivo ? "Activo" : "Inactivo";

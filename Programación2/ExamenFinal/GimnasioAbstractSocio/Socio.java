@@ -4,13 +4,14 @@ abstract class Socio {
     private String nombre;
     private String dni;
     private boolean estaActivo;
-    private int mensualidadBase;
+    private double mensualidadBase;
     
 
-    public Socio(String nombre, String dni, boolean estaActivo) {
+    public Socio(String nombre, String dni, boolean estaActivo, double mensualidadBase) {
         this.nombre = nombre;
         this.dni = dni;
         this.estaActivo = estaActivo;
+        this.mensualidadBase = mensualidadBase;
     }
 
     public void cambiarEstado(boolean nuevoEstado) {
@@ -22,9 +23,9 @@ abstract class Socio {
         System.out.println("Socio: " + nombre + " (DNI: " + dni + ") - [" + estado + "]");
     }
 
-    protected abstract double getMensualidadBase () {
-    return mensualidadBase;
+    protected double getMensualidadBase() {
+        return this.mensualidadBase;
     }
 
-    public abstract double calcularPrecioFinal ();
+    public abstract double calcularPrecioFinal();
 }

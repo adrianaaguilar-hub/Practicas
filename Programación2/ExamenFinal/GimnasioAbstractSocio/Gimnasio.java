@@ -6,10 +6,12 @@ public class Gimnasio {
     private Socio[] socios;
     private Actividad[] actividades;
     private Reserva[] reservas;
+    private Facturable[] cajaDiaria;
 
     private int maxSocios = 100;
     private int maxActividades = 100;
     private int maxReservas = 100;
+    private int maxFacturas = 100;
     private int numeroSocios;
     private int numeroActividades;
     private int numeroReservas;
@@ -22,6 +24,8 @@ public class Gimnasio {
         this.numeroActividades = 0;
         this.reservas = new Reserva[maxReservas];
         this.numeroReservas = 0;
+        this.cajaDiaria = new Facturable[maxFacturas];
+        this.numeroVentas = 0;
     }
 
     public void inscribirSocio(Socio socio) {
@@ -78,12 +82,20 @@ public class Gimnasio {
         System.out.println("Ocupacion actual de la actividad: " + ocupacionTotal);
     }
 
-    public double calcularIngresosTotales () {
-        double ingresosTotales;
-        for (int i = 0 ; i < numeroSocios; i++ ) {
-            ingresosTotales = ingresosTotales + socios[i].calcularMensualidad(); 
+    public void registrarTransaccion(Facturable itemCobrado) {
+        assert itemCobrado != null;
+        if (numeroVentas < cajaDiaria.length) {
+            cajaDiaria[numeroVentas] = itemCobrado;
+            numeroVentas++;
         }
-        return ingresosTotales
+    }
+
+    public double calcularCajaTotal() {
+        double totalAcumulado = 0.0; 
+        for (int i = 0; i < numeroVentas; i++) {
+            totalAcumulado = totalAcumulado + cajaDiaria[i].calcularPrecioFinal(); // Enlace dinámico polimórfico
+        }
+        return totalAcumulado;
     }
 
     public void mostrar() {

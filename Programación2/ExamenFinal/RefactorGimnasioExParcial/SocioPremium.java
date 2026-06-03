@@ -16,7 +16,7 @@ public class SocioPremium extends Socio {
         super.mostrar();
         String textoInBody = accesoInBody ? "Tienes acceso para utilizar InBody" : "No tienes acceso para realizar InBody";
         String textoSpa = accesoSpa ? "Tienes acceso al Spa" : "No tienes acceso al Spa";
-        System.err.println("--> Beneficios Premium: " + textoSpa + " ," + accesoInBody);
+        System.err.println("--> Beneficios Premium: " + textoSpa + " ," + textoInBody);
     }
 
     @Override
