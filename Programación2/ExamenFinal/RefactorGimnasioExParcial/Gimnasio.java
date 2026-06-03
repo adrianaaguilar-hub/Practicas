@@ -13,7 +13,6 @@ public class Gimnasio {
     private int numeroSocios;
     private int numeroActividades;
     private int numeroReservas;
-    private double ingresosTotales;
 
     public Gimnasio(String nombre) {
         this.nombre = nombre;
@@ -80,6 +79,7 @@ public class Gimnasio {
     }
 
     public double calcularIngresosTotales () {
+        double ingresosTotales;
         for (int i = 0 ; i < numeroSocios; i++ ) {
             ingresosTotales = ingresosTotales + socios[i].calcularMensualidad(); 
         }
