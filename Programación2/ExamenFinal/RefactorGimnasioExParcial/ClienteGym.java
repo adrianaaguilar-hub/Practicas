@@ -11,7 +11,7 @@ public class ClienteGym {
 
         Socio [2] socios = new Socio // luego guarda los socios en un array y modifica el mostrar con un metodo for i socios[i].mostrar();
 
-        Socio socio1 = new Socio("Adriana Aguilar", "12345678A", estaActivo);
+        Socio socio1 = new Socio("Adriana Aguilar", "12345678A", estaActivo, true, false);
         Socio socio2 = new Socio("Samuel Herrera", "87654321B", estaActivo);
 
         Actividad spinning = new Actividad("Spinning", "Adriana", aforo14);

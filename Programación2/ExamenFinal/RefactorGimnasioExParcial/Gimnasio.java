@@ -1,16 +1,19 @@
 package Programación2.ExamenFinal.RefactorGimnasioExParcial;
 
 public class Gimnasio {
+    
+    private String nombre;
+    private Socio[] socios;
+    private Actividad[] actividades;
+    private Reserva[] reservas;
+
     private int maxSocios = 100;
     private int maxActividades = 100;
     private int maxReservas = 100;
-    private String nombre;
-    private Socio[] socios;
     private int numeroSocios;
-    private Actividad[] actividades;
     private int numeroActividades;
-    private Reserva[] reservas;
     private int numeroReservas;
+    private double ingresosTotales;
 
     public Gimnasio(String nombre) {
         this.nombre = nombre;
@@ -74,6 +77,13 @@ public class Gimnasio {
             }
         }
         System.out.println("Ocupacion actual de la actividad: " + ocupacionTotal);
+    }
+
+    public double calcularIngresosTotales () {
+        for (int i = 0 ; i < numeroSocios; i++ ) {
+            ingresosTotales = ingresosTotales + socios[i].calcularMensualidad(); 
+        }
+        return ingresosTotales
     }
 
     public void mostrar() {

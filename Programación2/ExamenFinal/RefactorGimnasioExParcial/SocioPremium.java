@@ -2,7 +2,7 @@ package Programación2.ExamenFinal.RefactorGimnasioExParcial;
 
 public class SocioPremium extends Socio {
     private boolean accesoSpa;
-    private boolean accesoInBody
+    private boolean accesoInBody;
     private double aporteExtraPorSerPremium = 15.0;
 
     public SocioPremium (String nombre, String dni, boolean estaActivo, boolean accesoSpa, boolean accesoInBody) {
@@ -21,7 +21,9 @@ public class SocioPremium extends Socio {
 
     @Override
     public double calcularMensualidad () {
-        return super.calcularMensualidad() + aporteExtraPorSerPremium;
+         return super.calcularMensualidad() + aporteExtraPorSerPremium;
         
     }
 }
+
+
