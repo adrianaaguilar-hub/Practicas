@@ -37,7 +37,8 @@ Socio socio = new SocioPremium(...);
 
 5. Clases Abstractas e Interfaces (Diferenciación conceptual)
 Tu profesor afirma en los apuntes que las Interfaces son "clases abstractas puras". Menciona al menos dos diferencias drásticas a nivel de atributos o de herencia múltiple que existen entre una clase abstracta tradicional y una interfaz.
-R- A nivel de atributo
+R- A nivel de atributo, una clase abstracta puede tenerlos e instanciarlos pero una interfaz no. A nivel de herencia multiple una clase abstracta define objetos del mismo tipo mientras que las interfaces no definen objetos sino acciones, en BeachClub se tiene una clase abstracta Consumcion.java y se podria implementar una interfaz "Facturable", porque ambos objetos saben dar un precio final, entonces la accion aca es facturar, que tambien podria ser usada por ejemplo para el gimnacio. 
+
 A nivel de Atributos: Una clase abstracta puede tener atributos normales de instancia (variables que cambian de estado). Una Interfaz NO puede tener atributos de instancia; todo lo que declares en ella es automáticamente una constante estática e inmutable (public static final).
 
 A nivel de Herencia Múltiple: En Java, una clase solo puede heredar por extensión (extends) de una única clase (sea abstracta o concreta). En cambio, la herencia por implementación te da total libertad: una clase puede implementar (implements) múltiples interfaces a la vez.

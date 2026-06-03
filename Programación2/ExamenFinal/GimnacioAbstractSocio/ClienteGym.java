@@ -14,10 +14,10 @@ public class ClienteGym {
 
         Gimnasio miGym = new Gimnasio("Fitness Park");
 
-        Socio [] socios = new Socio [2];
+        SocioEstandar [] socios = new SocioEstandar [2];
 
         socios [0]= new SocioPremium("Adriana Aguilar", "12345678A", estaActivo, accesoSpa, accesoInBody);
-        socios [1]= new Socio("Samuel Herrera", "87654321B", estaActivo);
+        socios [1]= new SocioEstandar("Samuel Herrera", "87654321B", estaActivo);
 
         Actividad spinning = new Actividad("Spinning", "Adriana", aforo14);
         Actividad yoga = new Actividad("Yoga", "Samuel", aforo15);

@@ -1,10 +1,11 @@
 package Programación2.ExamenFinal.RefactorGimnasioExParcial;
 
-public class Socio {
+abstract class Socio {
     private String nombre;
     private String dni;
     private boolean estaActivo;
-    private boolean mensualidadBase = 30.0;
+    private int mensualidadBase;
+    
 
     public Socio(String nombre, String dni, boolean estaActivo) {
         this.nombre = nombre;
@@ -16,12 +17,14 @@ public class Socio {
         estaActivo = nuevoEstado;
     }
 
-    public double calcularMensualidad() {
-    return mensualidadBase;
-    }
-
     public void mostrar() {
         String estado = estaActivo ? "Activo" : "Inactivo";
         System.out.println("Socio: " + nombre + " (DNI: " + dni + ") - [" + estado + "]");
     }
+
+    protected abstract double getMensualidadBase () {
+    return mensualidadBase;
+    }
+
+    public abstract double calcularPrecioFinal ();
 }

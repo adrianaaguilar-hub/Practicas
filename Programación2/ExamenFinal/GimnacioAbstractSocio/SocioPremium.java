@@ -1,6 +1,6 @@
 package Programación2.ExamenFinal.RefactorGimnasioExParcial;
 
-public class SocioPremium extends Socio {
+public class SocioPremium extends Socio implements Facturable {
     private boolean accesoSpa;
     private boolean accesoInBody;
     private double aporteExtraPorSerPremium = 15.0;
@@ -23,6 +23,12 @@ public class SocioPremium extends Socio {
     public double calcularMensualidad () {
          return super.calcularMensualidad() + aporteExtraPorSerPremium;
         
+    }
+
+    @Override
+    public double calcularPrecioFinal() {
+        double precioFinal = this.getMensualidadBase() + aporteExtraPorSerPremium;
+        return precioFinal;
     }
 }
 
